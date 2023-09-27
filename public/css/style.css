@@ -1,0 +1,423 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    text-decoration: none;   
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+/* <img class="imagem-de-fundo" src="img/floe.jpg" alt="Imagem de Fundo">
+
+.imagem-de-fundo {
+
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: -1; 
+
+    border-right:solid 1px rgb(174, 174, 174);
+}
+*/
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #3B7AE3;
+  }
+
+.menu-main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    top:0;
+
+    max-width: 100%;
+    height: 45px;
+    background-color: #ffffff;
+    border-bottom:solid 4px rgba(196, 181, 181, 0.818);
+    gap:75%;
+}
+
+.menu-main ul{
+    display: flex;
+    gap:40px;     
+}
+
+.menu-main ul li a{
+    transition: 0.5;
+    font-weight: bold;
+    font-size:20px;
+}
+.menu-main a:hover{
+    color:rgb(47, 47, 248);
+    transition: 1s;
+}
+.menu-main a{
+    font-size: 22px;
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+ul, li{
+    list-style-type: none;
+}
+
+
+/* FOOTER */
+
+footer{
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    height:105px;
+
+    background-color: #ffffff;
+    border-top:solid 4px rgba(196, 181, 181, 0.818);
+    color:white;
+}
+
+/* PAGE OF LOGIN - REGISTER */
+
+.div-main{
+    max-width: 25%;
+    margin:8% auto 20%;
+
+    border-left:solid 1px rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#div-main-register{
+    margin: 4% auto 20%;
+}
+.form-div{
+    display: flex;
+    flex-direction: column;
+
+    width:300px;    
+}
+
+.form-div input{
+    padding: 8px;
+    margin-bottom: 1em;
+    margin-top:0.2em;
+    border:none;
+    border-bottom: solid 1px rgb(113, 112, 112);
+    font-size: 20px;
+}
+
+.titulo-p{
+    font-size: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin:25px 0 17px 0;
+}
+
+.div-main input[type="submit"]{
+    border:none;
+    background-color: #17AA26;
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    color:white;
+    font-size: 15px;
+}
+
+.div-main input[type="submit"]:hover{
+    transition: 1.2s;
+    background-color: #3B7AE3;
+
+}
+
+.redirect-div{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+}
+
+.redirect-div a{
+    color:black;
+}
+
+.redirect-div a:hover{
+    color:green;
+}
+
+/* PAG PONTO */
+
+.all-page{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    height:650px;
+    background-color: white;
+}
+
+
+.historico{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: auto;
+    align-items: center;
+
+    margin: 30px;
+    margin-left: 10%;
+
+    background-color: rgb(178, 178, 178);
+}
+
+.historico h3{
+    background-color: rgb(236, 227, 227);
+    font-size: 30px;
+}
+
+.div-horarios-historico{
+    width:200px;
+    height: auto;
+    display: flex;
+
+    display: flex;
+    flex-direction:column ;
+}
+
+.item-historico-dia{
+    width: 100%;
+    height:40px;
+    background-color: grey;
+    border:solid 1px black;
+    display: flex;
+    flex-direction:row ;
+
+    align-items: center;
+    justify-content: center;   
+}
+
+.item-horario-historico{
+    display: flex;
+    flex-direction:row ;
+
+    align-items: center;
+    justify-content: center;   
+
+    background-color: #17AA26;
+    border:solid 1px black;
+    font-size: 30px;
+    font-weight: bold;
+    color:rgb(255, 255, 255);
+}
+.item-horario-historico p{
+    margin: 5px;
+}
+
+/* PRA TIRAR ESSE DIV DEPOIS */
+
+#img-user{
+    height:60px;
+    width:60px;
+    border:solid 1px grey;
+    border-radius: 50%;
+}
+
+/* CRONOMETRO TEMPO */
+
+.timeData{
+    width:179px;
+    height:30px;
+    padding:10px;
+    font-size: 25px;
+    text-align: center;
+    border-top:solid 1px black;
+}
+
+/* OLHA ACIMA */
+.bater-ponto{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: auto;
+    align-items: center;
+
+    margin: 30px auto;
+}
+
+.div-user-horarios{
+    margin:100px 0 20px;
+}
+
+.div-user-horarios div{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    
+    margin: 0;
+}
+
+.div-user-horarios div p{
+    margin:4px 0 0 0;
+    font-size: 15px;
+    color:grey;
+}
+
+.div-user-horarios div h2{
+    cursor: pointer;
+    margin: 15px 0 0 0;
+}
+
+.div-user-horarios div h2:hover{
+    transition: 1.0s;
+    color:rgb(17, 209, 7);
+}
+
+.div-ponto-entrada{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+}
+
+#item-entrada{
+    display: flex;
+    justify-content: center;
+}
+
+#item-saida{
+    background-color: red;
+    justify-content: center;
+}
+
+.div-ponto-entrada div{
+    border:solid 1px black;
+    width:200px;
+    text-align: center;
+}
+
+
+.div-ponto-entrada div h2{
+    font-size:20px;
+    color:white;
+}
+
+.div-ponto-entrada div p{
+    font-size:25px;
+    color:rgb(0, 0, 0);
+    margin:10px 0 10px;
+}
+
+
+/*   Vai aparecer quando der entrada   */
+
+.confirmar-entrada{
+    z-index: 999;
+    margin:120px 520px;
+    position: absolute;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.702),
+    -10px -10px 30px rgba(0, 0, 0, 0.702);
+
+    width:550px;
+    height:450px;
+
+    background-color: rgb(252, 249, 249);
+    display: none;
+    flex-direction: column;
+}
+
+.confirmar-entrada1{
+    width:100%;
+    height: 5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.confirmar-entrada2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.confirmar-entrada div textarea{
+    padding: 5px;
+    height: 40px;
+    width:100%;
+    resize: none;
+    overflow: auto;
+}
+
+.item-confirmar-entrada{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:400px;
+}
+
+.confirmar-entrada h3{
+    margin:8px;
+}
+
+.button-ent{
+    background-color: #424543;
+    border:solid 1px rgb(0, 0, 0);
+    cursor: pointer;
+    color: white;
+    font-size: 22px;
+}
+
+.button-ent:hover{
+    background-color: #12841d;
+    transition: 0.7s;
+}
+
+.button-voltar{
+    height: 20px;
+    width:30px;
+    border:solid 1px red;
+}
+
+.button-voltar input{
+    background-color: red;
+    border:solid 1px black;
+    color:white;
+    cursor: pointer;
+
+    margin:150px 0 0 300px;
+}
+
+.confirmar-entrada input{
+    width: 200px;
+    padding:10px;
+    font-size: 22px;
+}
+
+#button-entrada{
+    margin:8px 0 0;
+}
+
+
+/* HISTORICO PAGE */
+
+.main-page-historico{
+    margin:80px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-page-historico div{
+    border:solid 1px black;
+    padding:10px;
+    margin:0.05em;
+
+}
