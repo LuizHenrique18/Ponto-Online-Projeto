@@ -1,27 +1,10 @@
-// BATER PONTO - CONFIRMAÇÃO
-
-const entrada = document.getElementById('item-entrada');
-const saida = document.getElementById('item-saida')
-const confirmarEntrada = document.querySelector('.confirmar-entrada');
-const voltar = document.querySelector('.button-voltar')
-
-saida.addEventListener('click', ()=>{
-    confirmarEntrada.style.display = 'flex';
-    console.log("worlk");
-})
-console.log('conectado está')
-/*
-voltar.addEventListener('click', ()=>{
-    confirmarEntrada.style.display = "none";
-})
-*/
 // CONFIGURAÇÃO DO RELÓGIO
 const iniciarContagem = document.querySelector('.confirmar-entrada')
 
 var id = null
 
 
-// CRONOMETRO CONFIGURAÇÃO
+// TEMPORIZADOR RESPONSÁVEL POR CONTAR O TEMPO 
 
 let contagemSegundos = 0;
 let contagemMinutos = 0; 
@@ -59,39 +42,33 @@ setInterval(contador, 1000)
 // BUTTON DE ENTRADA E SAÍDA
 const form = document.getElementById('form-ponto')
 
-// GUARDA O HORÁRIO DE ENTRADA ATÉ QUE O PONTO DE SAÍDA TENHA SIDO BATIDO
-// PARA QUE SEJA ADICIONADOS OS DE SAÍDA E ENTRADA AO MESMO TEMPO
+/* Guarda os dados de entrada e saída */
 
+const entrada = document.getElementById('item-entrada');
+const saida = document.getElementById('item-saida')
+const confirmarEntrada = document.querySelector('.confirmar-entrada');
+const voltar = document.querySelector('.button-voltar')
+
+//Ao iniciar a página 
+entrada.style.display = 'block'
+saida.style.display = 'none'
+
+//PEGA OS HORÁRIO DE ENTRADA DO USER E GUARDA 
 entrada.addEventListener('click', (event)=>{
-    console.log('olá baby')
-
-    event.preventDefault()
     localStorage.setItem('horaEntrada',cronometro.value)  
 })
 
+//PEGA OS HORÁRIO DE SAÍDA DO USER E GUARDA, TAMBÉM ENVIA OS DADOS PARA O CONTROLLER ASSIM QUE É DADA A SAÍDA 
 saida.addEventListener('click', ()=>{
-    localStorage.setItem('horaSaida',cronometro.value)
+    localStorage.setItem('horaSaida',cronometro.value) 
 
-    //ENVIAR DADOS PELO POST 
-
-})
-
-
-
-
-
-
-iniciarContagem.addEventListener('submit', (event)=>{
-    event.preventDefault()
-
-    const horaEntradaResgatarValor = localStorage.getItem('horaEntrada')
-    const horaSaidaResgatarValor = localStorage.getItem('horaSaida')
+        
+    let horaEntradaResgatarValor = localStorage.getItem('horaEntrada')
+    let horaSaidaResgatarValor  = localStorage.getItem('horaSaida')
 
     // TEXT AREA
     const descricao = document.getElementById('descricao').value
-    console.log(descricao)
 
-    console.log('LOOK AQUI')
     console.log(horaEntradaResgatarValor, horaSaidaResgatarValor)
     let horaPonto = {horaEntrada:horaEntradaResgatarValor, horaSaida:horaSaidaResgatarValor, descricao:descricao}
 
@@ -113,6 +90,21 @@ iniciarContagem.addEventListener('submit', (event)=>{
 
     localStorage.removeItem('horaEntrada');
     localStorage.removeItem('horaSaida');
-    confirmarEntrada.style.display = 'none';
 
 })
+
+//Função responsável por dizer se o user já deu entrada ou saída, para que assim fique disponível um dos dois bottões
+setInterval(function() {
+    console.log('aqui', localStorage.getItem('horaEntrada'), localStorage.getItem('horaSaida'))
+
+    if(localStorage.getItem('horaEntrada') == null){
+        console.log('null caralhoooaosiaosmoasimd')
+        entrada.style.display = 'block'
+        saida.style.display = 'none'
+    }
+    else{
+        console.log('não é mais null')
+        entrada.style.display = 'none'
+        saida.style.display = 'block'
+    }
+}, 1000);

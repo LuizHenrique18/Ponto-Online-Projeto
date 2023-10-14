@@ -1,113 +1,154 @@
+const { on } = require('nodemon')
 const Horarios = require('../models/Horarios')
 const User = require('../models/User')
+
+//Lógica responsável por somar o tempo trabalhado
+const tempoTrabalhado = require('../helpers/tempoTrabalhado')
+
 
 module.exports = class HistoricController {
 
 
-    static async historic(req, res){
+    static async historico(req, res){
+        //ID do user
         let userId = req.session.userid
-        /*
-        let user = await User.findOne({where:{id:userId}})
-        await Horarios.findAll({where:{horariosId:userId}
-            ,order:[
-            ['dataDeCriacao', 'ASC'],  
-        ]
-    }).then((horarios)=>{
-        let nameUser = user.name
-        let dataDeCriacao = horarios.map((horario) => horario.dataDeCriacao); 
-        let horaPonto = horarios.map((horario)=> horario.horaPonto);
-        let createdAt = horarios.map((horario)=> horario.createdAt);
-        let tempoDeTrabalho = horarios.map((horario)=> horario.tempoDeTrabalho);
-        
-        res.render('historico/historico', {nameUser, horaPonto, dataDeCriacao, createdAt, tempoDeTrabalho})
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-    */
-
-    //Data para identificar de qual o dia de criação - vai servir como parâmetro na hora de atualizar os dados de entrada e saída
-    let data = new Date()
-    console.log(data, 'ok, data aqui')
-
-    let dia = String(data.getDate()).padStart(2,'0')
-    let mes = String(data.getMonth() + 1).padStart(2,'0')
-    let ano = data.getFullYear()
-
-    let dataValida = `${dia}/${mes}/${ano}`;
-        //FUNCTION PARA RETORNAR A SOMA DAS HORAS TRABALHADAS DURANTE O DIA
-        const tempoTrabalhado = require('../helpers/tempoTrabalhado')
-
+  
         let array = []
         let arrayDeData = []
-        let arrayDeNumero = []
+        
+        //Importante para servir de parâmetro na próxima página, quando vai puxar todos os pontos batidos daquele user nessa data
+        let arrayDeIdData = []
 
         await Horarios.findAll({where:{horariosId:userId}
         })
         .then((dados)=>{   
-            console.log(dados)
-            console.log('aqui entrou')
-            for(let i=0; i<dados.length;i++){
-                console.log(dados.length, 'awuiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-                console.log(i)
-                Horarios.findAll({where:{horariosId:userId, dataDeCriacao:dados[i].dataDeCriacao}
-                })
-                .then((dadoss)=>{
-                    let valor1 = `${dadoss[i].dataDeCriacao}`
-                    arrayDeNumero.push(i)
-                    console.log('aaAaaaaquiii', i, valor1)
-
+                for(let i=0; i<dados.length;i++){            
+                    let valor1 = `${dados[i].dataDeCriacao}`
+                    //Se a data ainda não foi incluída dentro do array, ela entra e é incluída, se já está dentro, então não é incluída - é importante para as seguintes lógicas
                     if(arrayDeData.length > 0){
-                        if(arrayDeData.includes(valor1)){
-                            console.log('A data é a mesma', valor1)
-                        }else{
-                            console.log('Aghora sim', valor1)
-                            let valor = tempoTrabalhado(dadoss)
-                            array.push(valor)
-                            arrayDeData.push(dados[i].dataDeCriacao)
-                            }   
+                        if(!arrayDeData.includes(valor1)){
+                            arrayDeData.push(dados[i].dataDeCriacao) 
+                            arrayDeIdData.push(dados[i].id)
                     }
-                    else{
-                        console.log('tem dados, primeiro')
-                        let valor = tempoTrabalhado(dadoss)
-                        array.push(valor)
+                    }else{
                         arrayDeData.push(dados[i].dataDeCriacao)
+                        arrayDeIdData.push(dados[i].id)
                     }
-                    console.log(arrayDeData)
-                    console.log(array)
-                    console.log(arrayDeNumero)
-
-                })
-                .catch((err)=>{
-                    console.log(err)
-                    console.log('o Erro é aqui aaaajjajajjjjjjjjjjjjjjjjjjjjjjjaaaaaas')
-                })
             }
         })
         .catch((err)=>{
             console.log(err)
         })
-        //ESTOU TENTANDO FAZER COM QUE APAREÇA SOMENTE O VALOR DE UM DIA SOMADO, ENTENDE? VAMOS TRABALHAR MAIS NISSO DEPOIS
+
+        //FOR para ler todo o array 
+        for(let i=0;i<arrayDeData.length;i++){
+            await Horarios.findAll({where:{horariosId:userId, dataDeCriacao:arrayDeData[i]}})
+            .then((dados)=>{
+                //É enviado para a function os dados que serão lidos e vai ser retornado em array o tempo trabalhado - O tempo total de cada dia
+                let valor = tempoTrabalhado(dados)
+                array.push(valor)
+            })
+            .catch((err)=>{
+                console.log(err, 'erro úiltimo')
+            })
+       
+        }
 
 
         // Requisição no banco para pegar as informações do user e mostrá-las na interface
         let user = await User.findOne({where:{id:userId}})
 
-        // let userHorarios = await Horarios.findOne({where:{horariosId:userId, dataDeCriacao:dataValida}})
-        // .then(()=>{
-        //     console.log('Deu certo')
-        // })
-        // .catch((err)=>{
-        //     (err)
-        // })
+        let userName = user.name
+        let userEmail = user.email
+        let userCpf = String(user.cpf)
 
-        let nameUser = user.name
+        let arrayTempoTotal = array
+        let arrayDatas = arrayDeData
 
-        res.render('historico/historico', {nameUser})
+        //FORMATANDO CPF
+        let tresCpf =userCpf.slice(0,3)
+        let seisCpf =userCpf.slice(3,6)
+        let noveCpf =userCpf.slice(6,9)
+        let onzeCpf =userCpf.slice(9,11)
+
+        let cpfFormatado = `${tresCpf}.${seisCpf}.${noveCpf}-${onzeCpf}`
+        console.log(userCpf)
+
+        //LÓGICA PARA RETORNAR PRIMEIRO HORÁRIO DO DIA A SER CADASTRADO E O ÚLTIMO
+        let arrayEntrada = []
+        let arraySaida = []
+        try{
+            for(let i=0; i<arrayDatas.length;i++){
+                //busca os dados de acordo com os dias que já foram adicionados no arrayDatas
+                await Horarios.findAll({where:{horariosId:userId, dataDeCriacao:arrayDatas[i]}})
+                .then((dados)=>{
+                    //adiciona os dados no array de entrada e saída de acordo com o primeiro e último retornado de cada dia
+                    arrayEntrada.push(dados[0].horaEntrada)
+                    arraySaida.push(dados[dados.length-1].horaSaida)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+                }
+        }
+        catch(err){
+            console.log(err)
+        }
+
+        //Nivel do usuário
+   
+        let nivel = user.nivel
+        
+
+        res.render('historico/historico', {userName, userEmail, cpfFormatado, arrayTempoTotal, arrayDatas, arrayEntrada, arraySaida, arrayDeIdData, nivel})
 
             
     }
+
+    static async historicoDia(req,res){
+        //DADOS DO USER
+        let userId = req.session.userid
+        let user = await User.findOne({where:{id:userId}})
+
+        let userName = user.name
+        let userEmail = user.email
+        let userCpf = String(user.cpf)
+
+        //FORMATANDO CPF
+        let tresCpf =userCpf.slice(0,3)
+        let seisCpf =userCpf.slice(3,6)
+        let noveCpf =userCpf.slice(6,9)
+        let onzeCpf =userCpf.slice(9,11)
+
+        let cpfFormatado = `${tresCpf}.${seisCpf}.${noveCpf}-${onzeCpf}`
+
+        //Esse controller será responsável por disponibilizar os dados do pontos registrados especificamente em cada dia
+        const idData = req.params.id
+        let dadosDoId = await Horarios.findOne({where:{id:idData}})
+        let dia = dadosDoId.dataDeCriacao
+      
+        let dadosDoDia = await Horarios.findAll({where:{dataDeCriacao:dia, horariosId:userId}})
+        /* ARRAY PARA ADICIONAR OS DADOS */
+        let dadosFormatados = []
+        let entrada = []
+        let saida = []
+        let tempo = []
+        let descricao = []
+        let data 
+        let id = []
+        for(let i=0; i<dadosDoDia.length;i++){
+            /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
+            dadosFormatados.push(dadosDoDia[i].horaEntrada, dadosDoDia[i].horaSaida, dadosDoDia[i].descricao, dadosDoDia[i].id)
+            entrada.push(dadosDoDia[i].horaEntrada)
+            saida.push(dadosDoDia[i].horaSaida)
+            tempo.push(dadosDoDia[i].tempoDeTrabalho)
+            descricao.push(dadosDoDia[i].descricao)
+            data = dadosDoDia[i].dataDeCriacao
+            id.push(dadosDoDia[i].id)
+        }
+        //Nivel de acesso
+        let nivel = user.nivel
+
+        res.render('historico/historicoDetalhado', {idData, dadosFormatados,entrada, saida, data, id, tempo, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
+    }
 }
-
-
-// QUAL O PRÓXIMO PASSO? FAZER COM QUE O SOMADOR DE TEMPO, SOME PELO DIA, DATA VÁLIDA

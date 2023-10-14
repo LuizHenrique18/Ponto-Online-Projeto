@@ -10,6 +10,8 @@ const authRoutes = require('./routes/authRoutes')
 const pagRouter  = require('./routes/pagRouter')
 const profileRouter = require('./routes/profileRouter')
 const historicoRouter = require('./routes/historicoRouter')
+const controlerRouter = require('./routes/controleRoutes')
+const geraExcelRouter = require('./routes/geraExcelRoutes')
 
 // Banco de dados
 const conn = require('./db/conn');
@@ -19,7 +21,7 @@ const User = require('./models/User')
 const Horarios = require('./models/Horarios')
 const { profileEnd } = require('console')
 
-
+app.use(express.static('public'))
 app.use(
     express.urlencoded({
         extended:true,
@@ -39,7 +41,7 @@ app.use(
         cookie:{
             secure:false,
             maxAge:360000,
-            expires:new Date(Date.now()+3600000),
+            expires:new Date(Date.now()+36000000),
             httpOnly:true,
         },
     }),
@@ -64,14 +66,15 @@ app.use(express.static('helpers'))
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
+
 // Router 
 app.use('/', pagRouter)
 app.use('/', profileRouter)
 app.use('/', authRoutes)
 app.use('/', historicoRouter)
+app.use('/', controlerRouter)
+app.use('/', geraExcelRouter) 
 
-app.use(express.static('public'))
- 
 conn
     // .sync({force:true})
     .sync()

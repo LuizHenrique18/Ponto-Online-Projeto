@@ -6,7 +6,7 @@ const segundosParaHoras = require('./segundosParaHoras')
 function tempoTrabalhado(dados){
     let totalDeSegundos = []
 
-    // FOR PARA TRANSFORMAS AS HORAS PARA SEGUNDOS E ADICIONÁ-LAS AO ARRAY
+    // FOR para transformas as horas em segundos e adicioná-las ao array
     for(let i=0;i<dados.length;i++){
         //dados que venho do controller para somar o tempo trabalhado
         let tempoTrabalhado = dados[i].tempoDeTrabalho

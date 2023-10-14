@@ -1,0 +1,48 @@
+<div class="page-historico">
+    <div class="item-all-page-historico">
+            <div class="perfil-info-historico">
+                <div><h1>Dados Do {{userName}}</h1></div>
+                <div class="button-register"><a href="/gerarplanilha{{userId}}">Gerar planilha</a></div>
+            </div>
+
+        <div class="item-all-page-historico">            
+            <div class="container-itens-historico">
+                <div class="itens-container-historico-tituloss">
+                    <h2>DATA</h2>
+                    {{#each arrayDatas}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss" id="tempo-trabalhado">
+                    <h2>TEMPO</h2>
+                    {{#each arrayTempoTotal}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss">
+                    <h2>ENTRADA</h2>
+                    {{#each arrayEntrada}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss">
+                    <h2>SAÍDA</h2>
+                    {{#each arraySaida}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss" id="item-container-titulo" >
+                    <h2>VER MAIS</h2>
+                    {{#each arrayDeIdDataUser}}
+                    <div class="container-control"><a href="/diauser{{this}}" class="historico-a"><img src="img/moreTresPontos.png"  class="img-historico"></a></div>
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
+</div>

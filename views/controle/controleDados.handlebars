@@ -1,0 +1,36 @@
+<div class="page-historico">
+
+    <div class="div-titulo-controle">
+        <p class="titulo-controle">DADOS DOS USUÁRIOS</h2>
+        <div class="button-register"><a href="/register">NOVO USUÁRIO</a></div>
+    </div>     
+
+    <div class="item-all-page-historico">
+        <div class="container-dados-users">
+            <div class="users-controle">
+                <h2>NOME</h2>
+                {{#each usersName}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            <div class="users-controle">
+                <h2>EMAIL</h2>
+                {{#each usersEmail}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            <div class="users-controle">
+                <h2>CPF</h2>
+                {{#each usersCPF}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            <div class="users-controle">
+                <h2>Ver mais</h2>
+                {{#each usersId}}
+                <a href="/controleuser{{this}}"><img class="img-olho-controle" src="img/lupa.png"></a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

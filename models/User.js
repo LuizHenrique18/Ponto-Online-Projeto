@@ -11,12 +11,16 @@ const User = db.define('User',{
         required:true,
     },
     cpf:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING,
         required:true,
     },
     password:{
         type:DataTypes.STRING,
         required:true,
+    },
+    nivel:{
+        type:DataTypes.INTEGER,
+        required:true
     }
 })
 

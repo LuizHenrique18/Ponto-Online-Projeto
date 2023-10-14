@@ -1,33 +1,48 @@
-<div class="all-page">
-    <div class="main-page-historico">
-        <div class="container-titulo">
-            <h2>USER</h2>
-            <p>{{nameUser}}</p>
-        </div>
-        
-        <div class="container-titulo">
-            <h2>DATA</h2>
-            {{#each dataDeCriacao}}
-            <p>{{this}}</p>
-            {{/each}}
-        </div>
-        <div class="container-titulo">
-            <h2>TEMPO TRABALHADO</h2>
-            {{#each tempoDeTrabalho}}
-            <p>{{this}}</p>
-            {{/each}}
-        </div>
-        <div class="container-titulo">
-            <h2>HORÁRIO DE CHEGADA</h2>
-            {{#each createdAt}}
-            <p>{{this}}</p>
-            {{/each}}
+<div class="page-historico">
+    <div class="item-all-page-historico">
+            <div class="perfil-info-historico">
+                <div><h2>{{userName}}</h2></div>
+                <div><p>{{userEmail}}</p><p>{{cpfFormatado}}</p> </div>
+            </div>
+
+        <div class="item-all-page-historico">            
+            <div class="container-itens-historico">
+                <div class="itens-container-historico-tituloss">
+                    <h2>DATA</h2>
+                    {{#each arrayDatas}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss" id="tempo-trabalhado">
+                    <h2>TEMPO</h2>
+                    {{#each arrayTempoTotal}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss">
+                    <h2>ENTRADA</h2>
+                    {{#each arrayEntrada}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss">
+                    <h2>SAÍDA</h2>
+                    {{#each arraySaida}}
+                    <div class="container-control"><p>{{this}}</p></div>
+                    {{/each}}
+                </div>
+                <div class="itens-container-historico-tituloss" id="item-container-titulo" >
+                    <h2>VER MAIS</h2>
+                    {{#each arrayDeIdData}}
+                    <div class="container-control"><a href="/historicoDia{{this}}" class="historico-a"><img src="img/moreTresPontos.png"  class="img-historico"></a></div>
+                    {{/each}}
+                </div>
+            </div>
+
         </div>
     </div>
+    
 </div>
 
 
 </div>
-        <div class="user-info">
-            <
-        </div>

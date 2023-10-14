@@ -8,13 +8,20 @@ module.exports = class AuthController {
     }
 
     static async register(req, res){
-        res.render('auth/register')
+        
+        //Disponibiliza a vizualição do menu completo dependendo do nivel do user
+        let userId = req.session.userid
+        let user = await User.findOne({where:{id:userId}})
+        let nivel = user.nivel
+
+        res.render('auth/register',{nivel})
     }
 
     // PARTE DE REGISTRO DA PÁGINA
     static async registerPost(req, res){
-        const {name , email, cpf , password, confirmpassword} = req.body
+        let {name , email, cpf , password, confirmpassword, nivel} = req.body
 
+        //Confirma se a senha está correta
         if(password != confirmpassword){
             console.log('A senha não é a mesma')
             redirect('/register')
@@ -23,21 +30,26 @@ module.exports = class AuthController {
         const salt = bcrypt.genSaltSync(8)
         const hashPassword = bcrypt.hashSync(password, salt)
 
+         //Lógica para nível do usuário
+         if(nivel == null){
+            nivel = 0
+        }
+
+        //Dados que serão adicionados
         const user ={
             name, 
             email, 
             cpf,
-            password:hashPassword
+            password:hashPassword,
+            nivel
         }
-
+       
+        //Cria usuário
         try{
             const createdUser = await User.create(user)
 
             req.session.userid = createdUser.id
-
-            req.session.save(()=>{
-                res.redirect('/ponto')
-            })
+            res.redirect('/ponto')
         }
         catch(err){
             console.log(err)
