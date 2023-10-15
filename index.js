@@ -81,6 +81,7 @@ conn
     .sync()
     .then(()=>{
         app.listen(process.env.PORT || 3000)
+        console.log('Conectado aoaoaoao')
     })
     .catch((err)=>{
         console.log(err)
