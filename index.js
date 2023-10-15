@@ -71,11 +71,13 @@ app.use('/', historicoRouter)
 app.use('/', controleRoutes)
 app.use('/', geraExcelRouter) 
 
+app.listen(process.env.PORT || 3000)
+
 conn
     // .sync({force:true})
     .sync()
     .then(()=>{
-        app.listen(process.env.PORT || 3000)
+        console.log('Banco conectado')
     })
     .catch((err)=>{
         console.log(err)
