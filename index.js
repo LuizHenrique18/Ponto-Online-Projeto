@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoutes')
 const pagRouter  = require('./routes/pagRouter')
 const profileRouter = require('./routes/profileRouter')
 const historicoRouter = require('./routes/historicoRouter')
-const controlerRouter = require('./routes/controleRoutes')
+const controleRoutes = require('./routes/controleRoutes')
 const geraExcelRouter = require('./routes/geraExcelRoutes')
 
 // Banco de dados
@@ -73,7 +73,7 @@ app.use('/', pagRouter)
 app.use('/', profileRouter)
 app.use('/', authRoutes)
 app.use('/', historicoRouter)
-app.use('/', controlerRouter)
+app.use('/', controleRoutes)
 app.use('/', geraExcelRouter) 
 
 conn

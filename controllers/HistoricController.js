@@ -1,4 +1,3 @@
-const { on } = require('nodemon')
 const Horarios = require('../models/Horarios')
 const User = require('../models/User')
 
