@@ -5,6 +5,7 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const bodyParser = require('body-parser');
 
+
 // Rotas
 const authRoutes = require('./routes/authRoutes')
 const pagRouter  = require('./routes/pagRouter')
