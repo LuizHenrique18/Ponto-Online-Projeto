@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('railway', 'root', 'bV2Mde5CjWHt5zzHPmjM',{
-    host:'containers-us-west-181.railway.app',
+const sequelize = new Sequelize('railway', 'root', 'BPwndQSvwwuc4m3pjYrV',{
+    host:'containers-us-west-108.railway.app',
     dialect:'mysql',
-    port:8003
+    port:7880 
 })
 
 try{
