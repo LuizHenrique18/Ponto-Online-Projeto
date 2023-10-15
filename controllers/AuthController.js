@@ -10,11 +10,9 @@ module.exports = class AuthController {
     static async register(req, res){
         
         //Disponibiliza a vizualição do menu completo dependendo do nivel do user
-        let userId = req.session.userid
-        let user = await User.findOne({where:{id:userId}})
-        let nivel = user.nivel
 
-        res.render('auth/register',{nivel})
+
+        res.render('auth/register')
     }
 
     // PARTE DE REGISTRO DA PÁGINA
