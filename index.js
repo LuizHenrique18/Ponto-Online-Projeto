@@ -17,11 +17,6 @@ const geraExcelRouter = require('./routes/geraExcelRoutes')
 // Banco de dados
 const conn = require('./db/conn');
 
-// Models
-const User = require('./models/User')
-const Horarios = require('./models/Horarios')
-const { profileEnd } = require('console')
-
 app.use(express.static('public'))
 app.use(
     express.urlencoded({
