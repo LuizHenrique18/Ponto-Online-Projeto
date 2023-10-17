@@ -1,7 +1,4 @@
-// FUNCTION USADA PARA VERIFICAR E TRANSFORMAR DE NOME PARA NÚMERO PARA FACILITAR 
-//VERIFICAÇÃO
-
-
+//FUNCTION USADA PARA VERIFICAR E TRANSFORMAR DE NOME PARA NÚMERO PARA FACILITAR VERIFICAÇÃO
 function verificaData(data){
     if(data == 'Jan'){
         return '01';
@@ -40,7 +37,7 @@ function verificaData(data){
         return '12';
     }
     else{
-        return 'Houve algum erro'
+        return 'erro verifica data'
     }
     
 }

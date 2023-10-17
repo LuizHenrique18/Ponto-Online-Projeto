@@ -3,9 +3,7 @@ const iniciarContagem = document.querySelector('.confirmar-entrada')
 
 var id = null
 
-
 // TEMPORIZADOR RESPONSÁVEL POR CONTAR O TEMPO 
-
 let contagemSegundos = 0;
 let contagemMinutos = 0; 
 let contagemHoras = 0;
@@ -92,18 +90,14 @@ saida.addEventListener('click', ()=>{
     localStorage.removeItem('horaSaida');
 
 })
-
 //Função responsável por dizer se o user já deu entrada ou saída, para que assim fique disponível um dos dois bottões
 setInterval(function() {
-    console.log('aqui', localStorage.getItem('horaEntrada'), localStorage.getItem('horaSaida'))
 
     if(localStorage.getItem('horaEntrada') == null){
-        console.log('null caralhoooaosiaosmoasimd')
         entrada.style.display = 'block'
         saida.style.display = 'none'
     }
     else{
-        console.log('não é mais null')
         entrada.style.display = 'none'
         saida.style.display = 'block'
     }

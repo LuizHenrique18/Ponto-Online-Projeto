@@ -21,7 +21,6 @@ function contador(tempo1 , tempo2){
             valor2Minutos,
             valor2Horas
         ]
-        console.log('Teste2' ,teste2)
 
 
         let segundos1 = parseInt(valor1Segundos)
@@ -33,7 +32,6 @@ function contador(tempo1 , tempo2){
             minutos1,
             segundos1
         ]
-        console.log('Teste3' ,teste3)
 
         let segundos2 = parseInt(valor2Segundos)
         let minutos2 = parseInt(valor2Minutos)
@@ -45,13 +43,9 @@ function contador(tempo1 , tempo2){
             segundos2
         ]
 
-        console.log('Teste4' ,teste4)
-
-
         let comparadorSegundos = segundos2 - segundos1
         let comparadorMinutos = minutos2 - minutos1
         let comparadorHoras = horas2 - horas1
-        console.log('Ultimo teste:', comparadorHoras, comparadorMinutos, comparadorSegundos)
 
         if(segundos1<segundos2){
             comparadorSegundos = segundos2 - segundos1
@@ -78,12 +72,10 @@ function contador(tempo1 , tempo2){
         }
 
     if(comparadorSegundos > 59){
-        console.log('contadorSegundos', comparadorSegundos)
         comparadorSegundos = comparadorSegundos - 60
         comparadorMinutos++
     }
     if(comparadorMinutos>59){
-        console.log('contadorMinutos', comparadorMinutos)
         comparadorMinutos = comparadorMinutos - 60
         comparadorHoras++
         console.log('comparadorHoras')

@@ -1,0 +1,30 @@
+@media screen and (max-width:1300px){
+    .menu-options{
+        width: 85%;
+    }
+    .menu-main ul li a{
+        font-weight: bold;
+        font-size:18px;
+    }
+}
+@media screen and (max-width:1110px){
+    .menu-options{
+        width: 75%;
+    }
+    .menu-main ul li a{
+        font-weight: bold;
+        font-size:16px;
+    }
+}
+@media screen and (max-width:900px){
+    .menu-options{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:600px){
+    .form-div input{
+        margin-bottom: 0.7em;
+    }
+}

@@ -10,7 +10,7 @@ const authenticationMiddleware = require('../config/authenticationMiddleware')
 router.get('/', AuthController.login)
 router.post('/login', AuthController.loginPost)
 router.get('/logout', AuthController.logOut)
-router.get('/register', AuthController.register)
+router.get('/register',authenticationMiddleware, nivelAcess, AuthController.register)
 router.post('/register',AuthController.registerPost)
 
 module.exports = router
