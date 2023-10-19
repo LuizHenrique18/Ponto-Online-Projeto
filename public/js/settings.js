@@ -21,9 +21,15 @@ function contador(){
     }
     const dataAtual = new Date
 
-    let horasFormat =String(dataAtual.getHours()).padStart('2',0) 
-    let minutosFormat = String(dataAtual.getMinutes()).padStart('2',0)  
-    let segundosFormat =String(dataAtual.getSeconds()).padStart('2',0)  
+    //Transforma o horário para o fuso de São Paulo
+    let options = {timeZone:'America/Sao_Paulo', hour:'numeric', minute:'numeric', second:'numeric'}
+    let formatado = new Intl.DateTimeFormat('pt-BR', options);
+    let tempoFormatado = formatado.format(dataAtual);
+
+
+    let horasFormat =String(tempoFormatado).slice('0','2') 
+    let minutosFormat = String(tempoFormatado).slice('3','5')  
+    let segundosFormat =String(tempoFormatado).slice('6','8')   
 
     cronometro.value = `${horasFormat}:${minutosFormat}:${segundosFormat}`
     

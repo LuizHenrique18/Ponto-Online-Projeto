@@ -38,9 +38,6 @@ module.exports = class ControleController{
         //DADOS DO USER
         let userId = req.params.id
      
-        //Data para identificar de qual o dia de criação - vai servir como parâmetro na hora de atualizar os dados de entrada e saída
-        let data = new Date()
-
         //FUNCTION PARA RETORNAR A SOMA DAS HORAS TRABALHADAS DURANTE O DIA
         const tempoTrabalhado = require('../helpers/tempoTrabalhado')
 
@@ -138,7 +135,6 @@ module.exports = class ControleController{
         //DADOS DO USER
         let idParams = `${req.params.id}`
         let useridd = idParams[idParams.length - 1]
-        let userId = idParams.slice(1,2)
         let userName 
         let userEmail
         let userCpf         

@@ -153,6 +153,6 @@ module.exports = class HistoricController {
         }
         //Nivel de acesso
         let nivel = user.nivel
-        res.render('historico/historicoDetalhado', {idData, dadosPessoa, id, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
+        res.render('historico/historicoDetalhado', {idData,data, dadosPessoa, id, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
     }
 }

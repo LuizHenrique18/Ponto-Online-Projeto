@@ -23,11 +23,16 @@ module.exports = class PagController {
     static async pontoEntradaPost(req,res){
         
         //Data para identificar de qual o dia de criação - vai servir como parâmetro na hora de atualizar os dados de entrada e saída
-        let data = new Date()
+        const data = new Date().now;
 
-        let dia = String(data.getDate()).padStart(2,'0')
-        let mes = String(data.getMonth() + 1).padStart(2,'0')
-        let ano = data.getFullYear()
+        let options = {timeZone:'America/Sao_Paulo', year:'numeric', month:'numeric', day:'numeric'}
+        let formatado = new Intl.DateTimeFormat('pt-BR', options);
+        let dataFormatada = formatado.format(data);
+
+        let dia  =String(dataFormatada).slice('0','2') 
+        let mes = String(dataFormatada).slice('3','5')  
+        let ano =String(dataFormatada).slice('6','10')  
+
 
         let dataValida = `${dia}/${mes}/${ano}`;
         //Id do usuário logado

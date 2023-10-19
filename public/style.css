@@ -694,17 +694,18 @@ input::placeholder {
     flex-direction: column;
 }
 
-.tiiii{
-    display: flex;
-    flex-direction: row;
-    width: 600px;
-}
-
 .div-layout-dados{
     display: flex;
     flex-direction: row;
     width: 900px;
 }
+
+.div-layout-dados-menor{
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+}
+
 .container-dados-userss{
     display: flex;
     justify-content: center;
