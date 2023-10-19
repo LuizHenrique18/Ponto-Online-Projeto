@@ -76,6 +76,8 @@ module.exports = class HistoricController {
         //LÓGICA PARA RETORNAR PRIMEIRO HORÁRIO DO DIA A SER CADASTRADO E O ÚLTIMO
         let arrayEntrada = []
         let arraySaida = []
+
+        let dadosPessoa = []
         try{
             for(let i=0; i<arrayDatas.length;i++){
                 //busca os dados de acordo com os dias que já foram adicionados no arrayDatas
@@ -84,6 +86,7 @@ module.exports = class HistoricController {
                     //adiciona os dados no array de entrada e saída de acordo com o primeiro e último retornado de cada dia
                     arrayEntrada.push(dados[0].horaEntrada)
                     arraySaida.push(dados[dados.length-1].horaSaida)
+                    dadosPessoa.push({datas:arrayDatas[i], entrada:arrayEntrada[i], saida:arraySaida[i], tempo:arrayTempoTotal[i], arrayIdData:arrayDeIdData[i]})
                 })
                 .catch((err)=>{
                     console.log(err)
@@ -97,9 +100,10 @@ module.exports = class HistoricController {
         //Nivel do usuário
    
         let nivel = user.nivel
-        
+        console.log(dadosPessoa)
+        console.log(arrayDeIdData)
 
-        res.render('historico/historico', {userName, userEmail, cpfFormatado, arrayTempoTotal, arrayDatas, arrayEntrada, arraySaida, arrayDeIdData, nivel})
+        res.render('historico/historico', {userName, userEmail, cpfFormatado, dadosPessoa, nivel})
 
             
     }
@@ -135,19 +139,20 @@ module.exports = class HistoricController {
         let descricao = []
         let data 
         let id = []
+
+        let dadosPessoa = []
         for(let i=0; i<dadosDoDia.length;i++){
             /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
-            dadosFormatados.push(dadosDoDia[i].horaEntrada, dadosDoDia[i].horaSaida, dadosDoDia[i].descricao, dadosDoDia[i].id)
             entrada.push(dadosDoDia[i].horaEntrada)
             saida.push(dadosDoDia[i].horaSaida)
             tempo.push(dadosDoDia[i].tempoDeTrabalho)
             descricao.push(dadosDoDia[i].descricao)
             data = dadosDoDia[i].dataDeCriacao
             id.push(dadosDoDia[i].id)
+            dadosPessoa.push({datas:dadosDoDia[i].dataDeCriacao, entrada:dadosDoDia[i].horaEntrada, saida:dadosDoDia[i].horaSaida, tempo:dadosDoDia[i].tempoDeTrabalho})
         }
         //Nivel de acesso
         let nivel = user.nivel
-
-        res.render('historico/historicoDetalhado', {idData, dadosFormatados,entrada, saida, data, id, tempo, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
+        res.render('historico/historicoDetalhado', {idData, dadosPessoa, id, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
     }
 }

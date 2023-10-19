@@ -5,36 +5,24 @@
                 <div><p>{{userEmail}}</p><p>{{cpfFormatado}}</p> </div>
             </div>
 
-        <div class="item-all-page-historico">            
-            <div class="container-itens-historico">
-                <div class="itens-container-historico-tituloss">
-                    <h2>DATA</h2>
-                    {{#each arrayDatas}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-                <div class="itens-container-historico-tituloss" id="tempo-trabalhado">
-                    <h2>TEMPO</h2>
-                    {{#each arrayTempoTotal}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-                <div class="itens-container-historico-tituloss">
-                    <h2>ENTRADA</h2>
-                    {{#each arrayEntrada}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-                <div class="itens-container-historico-tituloss">
-                    <h2>SAÍDA</h2>
-                    {{#each arraySaida}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-                <div class="itens-container-historico-tituloss" id="item-container-titulo" >
-                    <h2>VER MAIS</h2>
-                    {{#each arrayDeIdData}}
-                    <div class="container-control"><a href="/historicoDia{{this}}" class="historico-a"><img src="img/moreTresPontos.png"  class="img-historico"></a></div>
+        <div class="item-all-page-historico">  
+            <div class="container-dados-userss">
+                <div class="users-controle">  
+                        <div class="div-layout-dados">   
+                            <div class="titulo-dados-user"><h2>Data</h2></div>
+                            <div class="titulo-dados-user"><h2>Tempo</h2></div>
+                            <div class="titulo-dados-user tit-email"><h2>Entrada</h3></div>
+                            <div class="titulo-dados-user"><h2>Saida</h2></div>
+                            <div class="titulo-dados-user ver-mais"><h2>Ver Mais</h2></div>
+                        </div>
+                    {{#each dadosPessoa}}
+                            <div class="div-layout-dados">   
+                                <div class="name-controler"><p>{{this.datas}}</p></div>
+                                <div class="name-controler"><p>{{this.tempo}}</p></div>
+                                <div class="name-controler tit-email"><p>{{this.entrada}}</p></div>
+                                <div class="name-controler"><p>{{this.saida}}</p></div>
+                                <div class="name-controler ver-mais"><a href="/historicoDia{{this.arrayIdData}}" class="historico-a"><img src="img/moreTresPontos.png"  class="img-historico"></a></div>
+                            </div>
                     {{/each}}
                 </div>
             </div>
@@ -42,6 +30,9 @@
         </div>
     </div>
     
+</div>
+
+
 </div>
 
 

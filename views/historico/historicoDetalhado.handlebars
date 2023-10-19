@@ -7,32 +7,23 @@
         <div class="container-titulo">
                 <h2>DADOS DO DIA {{data}}</h2>
         </div>
-        <div class="container-itens-detalhados">
-                <div class="itens-container-historico-tituloss">
-                    <h2>TEMPO</h2>
-                    {{#each tempo}}
-                    <div class="container-control"><p>{{this}}</p></div>
+            <div class="container-dados-users">
+                    <div class="div-layout-dados">   
+                            <div class="titulo-dados-user"><h2>Data</h2></div>
+                            <div class="titulo-dados-user"><h2>Tempo</h2></div>
+                            <div class="titulo-dados-user"><h2>Entrada</h3></div>
+                            <div class="titulo-dados-user ver-mais"><h2>Saida</h2></div>
+                    </div>
+                    {{#each dadosPessoa}}
+                                <div class="div-layout-dados">   
+                                    <div class="name-controler"><p>{{this.datas}}</p></div>
+                                    <div class="name-controler"><p>{{this.tempo}}</p></div>
+                                    <div class="name-controler"><p>{{this.entrada}}</p></div>
+                                    <div class="name-controler ver-mais"><p>{{this.saida}}</p></div>
+                                </div>
                     {{/each}}
                 </div>
-                <div class="itens-container-historico-tituloss">
-                    <h2>ENTRADA</h2>
-                    {{#each entrada}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-        
-                <div class="itens-container-historico-tituloss" >
-                    <h2>SAÍDA</h2>
-                    {{#each saida}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
-                <div class="itens-container-historico-tituloss" id="item-container-titulo">
-                    <h2>DESCRIÇÃO</h2>
-                    {{#each descricao}}
-                    <div class="container-control"><p>{{this}}</p></div>
-                    {{/each}}
-                </div>
+
             </div>
         </div>
     </div>

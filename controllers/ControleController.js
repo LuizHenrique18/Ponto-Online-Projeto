@@ -5,6 +5,7 @@ const Horarios = require('../models/Horarios')
 module.exports = class ControleController{
     
     static async controleDados (req,res){
+        
         //Array para dados que serão adicionados através do findAll
         let usersName = []
         let usersEmail = []
@@ -15,18 +16,18 @@ module.exports = class ControleController{
         let idUser = req.session.userid
         let usuario = await  User.findOne({where:{id:idUser}})   
         let nivel = usuario.nivel
+        let pessoas = []
 
         User.findAll()
         .then((users)=>{
-
             for(let i=0; i < users.length; i++){
-    
                 usersName.push(users[i].name)
                 usersEmail.push(users[i].email)
                 usersCPF.push(users[i].cpf)
                 usersId.push(users[i].id)
+                pessoas.push({name:usersName[i],email:usersEmail[i],cpf:usersCPF[i],userId:usersId[i]})
             }
-            res.render('controle/controleDados',{usersName, usersEmail, usersCPF, nivel, usersId})
+            res.render('controle/controleDados',{pessoas, nivel})
         })
         .catch((err)=>{
             console.log(err)
@@ -72,12 +73,17 @@ module.exports = class ControleController{
         .catch((err)=>{
             console.log(err)
         })
+        //LÓGICA PARA RETORNAR PRIMEIRO HORÁRIO DO DIA A SER CADASTRADO E O ÚLTIMO
+        let arrayEntrada = []
+        let arraySaida = []
 
         for(let i=0;i<arrayDeData.length;i++){
             await Horarios.findAll({where:{horariosId:userId, dataDeCriacao:arrayDeData[i]}})
             .then((dados)=>{
                 let valor = tempoTrabalhado(dados)
                 array.push(valor)
+                arrayEntrada.push(dados[0].horaEntrada)
+                arraySaida.push(dados[dados.length-1].horaSaida)
             })
             .catch((err)=>{
                 console.log(err, 'erro úiltimo')
@@ -106,36 +112,26 @@ module.exports = class ControleController{
         let onzeCpf =userCpf.slice(9,11)
 
         let cpfFormatado = `${tresCpf}.${seisCpf}.${noveCpf}-${onzeCpf}`
-
-        //LÓGICA PARA RETORNAR PRIMEIRO HORÁRIO DO DIA A SER CADASTRADO E O ÚLTIMO
-        let arrayEntrada = []
-        let arraySaida = []
-        try{
-            for(let i=0; i<arrayDatas.length;i++){
-                //busca os dados de acordo com os dias que já foram adicionados no arrayDatas
-                await Horarios.findAll({where:{horariosId:userId, dataDeCriacao:arrayDatas[i]}})
-                .then((dados)=>{
-                    //adiciona os dados no array de entrada e saída de acordo com o primeiro e último retornado de cada dia
-                    arrayEntrada.push(dados[0].horaEntrada)
-                    arraySaida.push(dados[dados.length-1].horaSaida)
-                })
-                .catch((err)=>{
-                    console.log(err)
-                })
-                }
-        }
-        catch(err){
-            console.log(err)
-        }
+       
 
         //Nivel de acesso
         let idUserNivel = req.session.userid
         let userIdNivel = await User.findOne({where:{id:idUserNivel}})
         let nivel =userIdNivel
+        console.log(userName, 'oaoskdmmidaosdimoidsa')
+        let dadosUsuario = []
+        console.log(arrayDatas)
+        for(let i=0; i < arrayDatas.length ; i++){
+            dadosUsuario.push({datas:arrayDatas[i], entrada:arrayEntrada[i], saida:arraySaida[i], idDataUser:arrayDeIdDataUser[i], tempo:arrayTempoTotal[i], idDataUser:arrayDeIdDataUser[i]})
+        }
 
-        res.render('controle/controleUser', {userName, userEmail, cpfFormatado, arrayTempoTotal, arrayDatas, arrayEntrada, arraySaida, arrayDeIdData, arrayDeIdDataUser, nivel, userId})
+        console.log(dadosUsuario)
+        console.log(arrayTempoTotal)
+        res.render('controle/controleUser', {userName, userEmail, cpfFormatado, dadosUsuario, nivel, userId})    
+
+
     }
-
+    
 
     //RESPONSÁVEL POR DISPONIBILIZAR OS DADOS DE USUÁRIOS ESPECÍFICOS PARA O USER MASTER
     static async controleUserDetalhado(req,res){
@@ -175,26 +171,24 @@ module.exports = class ControleController{
         let dia = dadosDoId.dataDeCriacao
       
         let dadosDoDia = await Horarios.findAll({where:{dataDeCriacao:dia, horariosId:useridd}})
-        /* ARRAY PARA ADICIONAR OS DADOS */
-        let dadosFormatados = []
-        let entrada = []
-        let saida = []
-        let tempo = []
-        let descricao = []
-        let data 
-        let id = []            
-        for(let i=0; i<dadosDoDia.length;i++){
-            /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
-            dadosFormatados.push(dadosDoDia[i].horaEntrada, dadosDoDia[i].horaSaida, dadosDoDia[i].descricao, dadosDoDia[i].id)
-            entrada.push(dadosDoDia[i].horaEntrada)
-            saida.push(dadosDoDia[i].horaSaida)
-            tempo.push(dadosDoDia[i].tempoDeTrabalho)
-            descricao.push(dadosDoDia[i].descricao)
-            data = dadosDoDia[i].dataDeCriacao
-            id.push(dadosDoDia[i].id)
+         /* ARRAY PARA ADICIONAR OS DADOS */
+         let id = []            
+         let dadosPessoa = []
+
+        let data
+
+         for(let i=0; i<dadosDoDia.length;i++){
+             /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
+             id.push(dadosDoDia[i].id)
+             dadosPessoa.push({datas:dadosDoDia[i].dataDeCriacao, entrada:dadosDoDia[i].horaEntrada, saida:dadosDoDia[i].horaSaida, tempo:dadosDoDia[i].tempoDeTrabalho})
+             data = dadosDoDia[i].dataDeCriacao
         }
-        res.render('controle/controleUserDetalhado', {idData, dadosFormatados,entrada, saida, data, id, tempo, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
-    }
+        
+
+         //Nivel de acesso
+         console.log(dadosPessoa)
+         res.render('controle/controleUserDetalhado', {data, idData, dadosPessoa, id, cpfFormatado, userCpf, userEmail, userName, nivel})
+     }
 
 
   
