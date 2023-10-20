@@ -28,7 +28,7 @@ function contador(tempo1 , tempo2){
         }else if(segundos2<segundos1){
             comparadorSegundos = segundos1 - segundos2
         }else{
-            comparadorSegundos = 0
+            comparadorSegundos= 0
         }
 
         if(minutos1<minutos2){
@@ -63,6 +63,9 @@ function contador(tempo1 , tempo2){
 
     let time = `${segundosFormatados}:${minutosFormatados}:${horasFormatadas}`
     console.log('timer>>> ',time)
+    console.log(valor1Horas , valor1Minutos, valor1Segundos , 'Primeiro - Tempo entrada')
+    console.log(valor2Horas , valor2Minutos, valor2Segundos , 'Segundo - Tempo Saída')
+
     return time
 }
 
