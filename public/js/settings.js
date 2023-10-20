@@ -38,7 +38,7 @@ function contador(){
         minutos:contagemMinutos,
         segundos:contagemSegundos
     }
-
+    console.log('Ta contando aqui')
     return tempo
 }
 setInterval(contador, 1000)
