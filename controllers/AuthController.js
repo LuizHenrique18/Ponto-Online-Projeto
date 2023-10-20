@@ -46,9 +46,8 @@ module.exports = class AuthController {
        
         //Cria usuário
         try{
-            const createdUser = await User.create(user)
+            await User.create(user)
 
-            req.session.userid = createdUser.id
             res.redirect('/ponto')
         }
         catch(err){
