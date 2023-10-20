@@ -3,45 +3,21 @@ function contador(tempo1 , tempo2){
     let valor1 = tempo1
     let valor2 = tempo2
 
-        let valor1Segundos = valor1.slice('0', '2')
+        let valor1Horas = valor1.slice('0', '2')
         let valor1Minutos = valor1.slice('3', '5')
-        let valor1Horas = valor1.slice('6', '8')
-        let teste1 = [
-            valor1Segundos,
-            valor1Minutos,
-            valor1Horas
-        ]
-        console.log('Teste1' ,teste1)
-        let valor2Segundos = valor2.slice('0', '2')
+        let valor1Segundos = valor1.slice('6', '8')
+
+        let valor2Horas = valor2.slice('0', '2')
         let valor2Minutos = valor2.slice('3', '5')
-        let valor2Horas = valor2.slice('6', '8')
-
-        let teste2 = [
-            valor2Segundos,
-            valor2Minutos,
-            valor2Horas
-        ]
-
+        let valor2Segundos = valor2.slice('6', '8')
 
         let segundos1 = parseInt(valor1Segundos)
         let minutos1 = parseInt(valor1Minutos)
         let horas1 = parseInt(valor1Horas)
 
-        let teste3 = [
-            horas1,
-            minutos1,
-            segundos1
-        ]
-
         let segundos2 = parseInt(valor2Segundos)
         let minutos2 = parseInt(valor2Minutos)
         let horas2 = parseInt(valor2Horas)
-    
-        let teste4 = [
-            horas2,
-            minutos2,
-            segundos2
-        ]
 
         let comparadorSegundos = segundos2 - segundos1
         let comparadorMinutos = minutos2 - minutos1
@@ -52,7 +28,7 @@ function contador(tempo1 , tempo2){
         }else if(segundos2<segundos1){
             comparadorSegundos = segundos1 - segundos2
         }else{
-            comparadorSegundos= 0
+            comparadorSegundos = 0
         }
 
         if(minutos1<minutos2){

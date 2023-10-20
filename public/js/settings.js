@@ -41,7 +41,9 @@ function contador(){
     console.log('Ta contando aqui')
     return tempo
 }
-setInterval(contador, 1000)
+window.addEventListener('DOMContentLoaded', ()=>{
+    setInterval(contador, 1000)
+})
 
 // BUTTON DE ENTRADA E SAÍDA
 const form = document.getElementById('form-ponto')
