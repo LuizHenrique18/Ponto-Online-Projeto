@@ -11,6 +11,10 @@ function contador(tempo1 , tempo2){
         let valor2Minutos = valor2.slice('3', '5')
         let valor2Segundos = valor2.slice('6', '8')
 
+        console.log(valor1Horas , valor1Minutos, valor1Segundos , 'Primeiro - Tempo entrada')
+        console.log(valor2Horas , valor2Minutos, valor2Segundos , 'Segundo - Tempo Saída')
+    
+
         let segundos1 = parseInt(valor1Segundos)
         let minutos1 = parseInt(valor1Minutos)
         let horas1 = parseInt(valor1Horas)
@@ -18,6 +22,7 @@ function contador(tempo1 , tempo2){
         let segundos2 = parseInt(valor2Segundos)
         let minutos2 = parseInt(valor2Minutos)
         let horas2 = parseInt(valor2Horas)
+
 
         let comparadorSegundos = segundos2 - segundos1
         let comparadorMinutos = minutos2 - minutos1
@@ -56,16 +61,13 @@ function contador(tempo1 , tempo2){
         comparadorHoras++
         console.log('comparadorHoras')
     }
-    
+    console.log(comparadorSegundos, comparadorMinutos, comparadorHoras)
+
     let segundosFormatados = String(comparadorSegundos).padStart('2', 0)
     let minutosFormatados = String(comparadorMinutos).padStart('2', 0)
     let horasFormatadas = String(comparadorHoras).padStart('2',0)
 
-    let time = `${segundosFormatados}:${minutosFormatados}:${horasFormatadas}`
-    console.log('timer>>> ',time)
-    console.log(valor1Horas , valor1Minutos, valor1Segundos , 'Primeiro - Tempo entrada')
-    console.log(valor2Horas , valor2Minutos, valor2Segundos , 'Segundo - Tempo Saída')
-
+    let time = `${horasFormatadas}:${minutosFormatados}:${segundosFormatados}`
     return time
 }
 
