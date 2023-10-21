@@ -24,9 +24,9 @@ function contador(tempo1 , tempo2){
         let horas2 = parseInt(valor2Horas)
 
 
-        let comparadorSegundos = segundos2 - segundos1
-        let comparadorMinutos = minutos2 - minutos1
-        let comparadorHoras = horas2 - horas1
+        let comparadorSegundos 
+        let comparadorMinutos 
+        let comparadorHoras 
 
         if(segundos1<segundos2){
             comparadorSegundos = segundos2 - segundos1

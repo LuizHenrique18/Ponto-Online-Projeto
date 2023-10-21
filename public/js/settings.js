@@ -71,6 +71,7 @@ saida.addEventListener('click', ()=>{
         
     let horaEntradaResgatarValor = localStorage.getItem('horaEntrada')
     let horaSaidaResgatarValor  = localStorage.getItem('horaSaida')
+    console.log(horaSaidaResgatarValor, 'horasaidaa')
 
     // TEXT AREA
     const descricao = document.getElementById('descricao').value
