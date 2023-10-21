@@ -75,9 +75,8 @@ module.exports = class AuthController {
         }
         try{
             req.session.userid = user.id
-            req.session.save(()=>{
-                res.redirect('/ponto')
-            })
+            console.log('deu certo aqui, tá salvo')
+            res.redirect('/ponto')
         }
         catch(err){
             console.log(err)
@@ -88,7 +87,7 @@ module.exports = class AuthController {
 
     // SAIR, LOGOUT DO USUÁRIO
     static async logOut(req,res){
-        req.session.destroy()
+        req.session = null
         res.redirect('/')
     } 
 

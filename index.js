@@ -1,9 +1,8 @@
 const express = require('express')
 const app     = express()
 const exphbs  = require('express-handlebars')
-const session = require('express-session')
-const FileStore = require('session-file-store')(session)
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session')
 
 
 // Rotas
@@ -25,28 +24,19 @@ app.use(
 )
 
 app.use(
-    session({
+    cookieSession({
         name:'session',
         secret:'Senha para o segredo',
-        resave:false,
-        saveUninitialized:false,
-        store: new FileStore({
-            logFn: function () {},
-            path: require('path').join(require('os').tmpdir(), 'sessions'),
-          }),
-        cookie:{
-            secure:false,
-            maxAge:3600000,
-            expires:new Date(Date.now()+36000000),
-            httpOnly:true,
-        },
+        secure:false,
+        maxAge:60 * 30 * 30 * 1000,
+        httpOnly:true,
     }),
 )
 
 
 app.use((req, res, next) => {
 
-    console.log(req.session.userid);
+    console.log(req.session.userid, 'Aqui app use req.session.userid');
   
     if (req.session.userid) {
       res.locals.session = req.session;
