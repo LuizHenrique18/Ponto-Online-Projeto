@@ -36,16 +36,16 @@ app.use(
           }),
         cookie:{
             secure:false,
-            maxAge:360000,
+            maxAge:3600000,
             expires:new Date(Date.now()+36000000),
             httpOnly:true,
         },
     }),
 )
 
-// set session to res
+
 app.use((req, res, next) => {
-    // console.log(req.session)
+
     console.log(req.session.userid);
   
     if (req.session.userid) {

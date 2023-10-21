@@ -57,27 +57,33 @@ module.exports = class AuthController {
 
     // LOGIN, ENTRADA DO USUÁRIO
     static async loginPost(req, res){
-        const{email, password} = req.body
+        let{email, password} = req.body
 
-        const user = await User.findOne({where:{email:email}})
+        let user = await User.findOne({where:{email:email}})
         if(!user){
             console.log('Usuário não encontrado')
             res.render('auth/login')
             return
         }
 
-        const confPas = bcrypt.compareSync(password, user.password)
+        let confPas = bcrypt.compareSync(password, user.password)
         
         if(!confPas){
             console.log('A senha está incorreta')
             res.redirect('/')
             return
         }
-
-        req.session.userid = user.id
-        req.session.save(()=>{
-            res.redirect('/ponto')
-        })
+        try{
+            req.session.userid = user.id
+            req.session.save(()=>{
+                res.redirect('/ponto')
+            })
+        }
+        catch(err){
+            console.log(err)
+            console.log('erro aqui')
+            res.redirect('/')
+        } 
     }
 
     // SAIR, LOGOUT DO USUÁRIO
