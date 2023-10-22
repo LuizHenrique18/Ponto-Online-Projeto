@@ -18,7 +18,7 @@ module.exports = class planilhaExcelController{
   //LÓGICA PARA GERAR PLANILHA EXCEL DOS linhasPlanilha DO USUÁRIO
   static async excelPlanilha(req,res){
         //Apagar último arquivo baixado para não ter sobrecarga de arquivos no sistema
-        let excelFileName = `./dowloadExcel/dowload1.xlsx`
+        let excelFileName = `./downloadExcel/download1.xlsx`
 
         fs.unlink(excelFileName, (err)=>{
             if(err){
@@ -82,17 +82,7 @@ module.exports = class planilhaExcelController{
         let user = dadosUser.name
 
         let workSheetName = `Dados - ${user}`
-        let contadorParaWorksheet = 0
-        while(true){
-            if(workbook.getWorksheet(workSheetName)){
-                contadorParaWorksheet++
-                console.log('já existe um worksheet com esse nome', contadorParaWorksheet)
-            }else{
-                console.log('passou')
-                break
-            }
-            workSheetName = `Dados - ${user}${contadorParaWorksheet}`
-        }
+
         let worksheet = workbook.addWorksheet(workSheetName)
         /* AQUI COMEÇA A PARTE RESPONSÁVEL POR ADICIONAR OS DADOS ACIMA NO EXCEL */
         //Título 
@@ -109,7 +99,7 @@ module.exports = class planilhaExcelController{
         workbook.xlsx.writeFile(excelFileName)
         .then(()=>{
             console.log('deu certo')
-            res.download('dowloadExcel/dowload1.xlsx')
+            res.download('downloadExcel/download1.xlsx')
             console.log('teste')
         })
         .catch((err)=>{
