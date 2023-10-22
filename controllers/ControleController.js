@@ -1,6 +1,8 @@
 const User = require('../models/User')
 const Horarios = require('../models/Horarios')
 
+const tempoTrabalhado = require('../helpers/TempoTotalTrabalhado/tempoTrabalhado')
+
 
 module.exports = class ControleController{
     
@@ -39,7 +41,6 @@ module.exports = class ControleController{
         let userId = req.params.id
      
         //FUNCTION PARA RETORNAR A SOMA DAS HORAS TRABALHADAS DURANTE O DIA
-        const tempoTrabalhado = require('../helpers/tempoTrabalhado')
 
         let array = []
         let arrayDeData = []

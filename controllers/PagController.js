@@ -1,6 +1,9 @@
 const User = require('../models/User')
 const Horarios = require('../models/Horarios')
 
+//Soma entrada e saída do user
+const somaEntradaSaida = require('../helpers/SomaEntradaSaida/SomaEntradaSaida')
+
 
 module.exports = class PagController {
     static async ponto(req, res){ 
@@ -47,15 +50,12 @@ module.exports = class PagController {
         let verificadorBD = null
         let horarioDeEntrada = null
         
-
         // IMPORTANDO MÓDULO QUE FAZ A CONTAGEM DO TEMPO TRABALHADO, SOMANDO CASO TENHA MAIS DE UM VALOR REGISTRADO
-        const contador = require('../public/js/contador')
-      
             console.log(pontoEntrada, pontoSaida)
             if(pontoEntrada == 'null' || pontoSaida == null){
                 console.log('não foi possível adicionar pois um dos pontos de entrada está como nulo')
             }else{
-                let tempoAdicionar = contador(pontoEntrada, pontoSaida)
+                let tempoAdicionar = somaEntradaSaida(pontoEntrada, pontoSaida)
                 await Horarios.create({dataDeCriacao:dataValida, horaEntrada:pontoEntrada, horaSaida:pontoSaida, tempoDeTrabalho:tempoAdicionar, horariosId:userId, descricao:descricaoDoDia})
                 .then(()=>{
                     console.log('Deu tudo certo')

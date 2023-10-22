@@ -2,7 +2,7 @@ const Horarios = require('../models/Horarios')
 const User = require('../models/User')
 
 //Lógica responsável por somar o tempo trabalhado
-const tempoTrabalhado = require('../helpers/tempoTrabalhado')
+const tempoTrabalhado = require('../helpers/TempoTotalTrabalhado/tempoTrabalhado')
 
 
 module.exports = class HistoricController {
@@ -139,7 +139,7 @@ module.exports = class HistoricController {
         let descricao = []
         let data 
         let id = []
-
+        tempoTrabalhado
         let dadosPessoa = []
         for(let i=0; i<dadosDoDia.length;i++){
             /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
