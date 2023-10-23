@@ -1,25 +1,27 @@
 <div class="page-historico">
     <div class="div-auth profile-pag">
         <div class="div-profile">
-            <p class="titulo-p titulo-profile">ATUALIZAR USUÁRIO</p>
+            <p class="titulo-profile">ATUALIZAR USUÁRIO</p>
             <form action="/register" method="POST" class="form-profile">
-            <label>Nome:</label>
-            <p>{{name}}</p>
 
-            <label>Email:</label>
-            <p>{{email}}</p>
-
-            <label>CPF:</label>
-            <p>{{cpf}}</p>
-
-            
-            <div class="register-nivel-usuario"> 
-                <label>Nível do usuário:</label>
-                <div><input name="nivel" type="radio" value="0"><label for="comum">Comum</label></div>
-                <div><input name="nivel" type="radio" value="1"><label for="master">Master</label></div>
-
+            <div class="profile-dados">
+                <label>Nome:</label>
+                <p>{{name}}</p>
+                <img src="img/pincel.png" class="img-icon">
             </div>
-            <input type="submit" id="submit-button-register" value="Criar conta">
+            <div class="profile-dados">
+                <label>Email:</label>
+                <p>{{email}}</p>
+                <img src="img/pincel.png" class="img-icon">
+            </div>
+            
+            <div class="profile-dados">
+                <label>CPF:</label>
+                <p>{{cpf}}</p>
+                <img src="img/pincel.png" class="img-icon profile-pincel">
+            </div>
+            
+            <input type="submit" class="profile-button" value="Atualizar Conta">
 
         </form>
     </div>

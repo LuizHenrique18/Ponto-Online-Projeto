@@ -1,7 +1,7 @@
 <div class="page-historico">
     <div class="item-all-page-historico">
             <div class="perfil-info-historico">
-                <div><h1>Dados Do {{userName}}</h1></div>
+                <div><h1>Dados do usuário: {{userName}}</h1></div>
                 <div class="button-register"><a href="/gerarplanilha{{userId}}">Gerar planilha</a></div>
             </div>
 
@@ -10,8 +10,9 @@
                 <div class="users-controle">  
                         <div class="div-layout-dados-menor">   
                             <div class="titulo-dados-user"><h2>Data</h2></div>
-                            <div class="titulo-dados-user tit-email"><h2>entrada</h3></div>
-                            <div class="titulo-dados-user"><h2>saida</h2></div>
+                            <div class="titulo-dados-user tit-email"><h2>Entrada</h3></div>
+                            <div class="titulo-dados-user"><h2>Saida</h2></div>
+                            <div class="titulo-dados-user"><h2>Tempo</h2></div>
                             <div class="titulo-dados-user ver-mais"><h2>Ver Mais</h2></div>
                         </div>
                     {{#each dadosUsuario}}
@@ -19,7 +20,8 @@
                             <div class="name-controler"><p>{{this.datas}}</p></div>
                             <div class="name-controler tit-email"><p>{{this.entrada}}</p></div>
                             <div class="name-controler"><p>{{this.saida}}</p></div>
-                            <div class="name-controler ver-mais"><a href="/diauser{{this.idDataUser}}" class="historico-a"><img class="img-olho-controle" src="img/lupa.png"></a></div>
+                            <div class="name-controler"><p>{{this.tempo}}</p></div>
+                            <div class="name-controler ver-mais"><a href="/diauser{{this.idDataUser}}" class="historico-a"><img class="img-icon" src="img/lupa.png"></a></div>
                         </div>
                     {{/each}}
                 </div>
