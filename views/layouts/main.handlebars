@@ -6,6 +6,7 @@
     <title>Work Point</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleQuery.css">
+    <link rel="icon" href="img/workPoint.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100&family=Faustina:wght@300&family=Judson:ital@1&display=swap" rel="stylesheet">
@@ -46,8 +47,41 @@
                 </div>
             {{/if}}
         </div>
+
+
+        {{#if session.userid}}
+            <div class="buttao-sandwich"><img src="img/menu-burger.png" id="buttaoSand" alt=""></div>
+        {{/if}}
     </div>
+    
     <div class="page">
+        <div class="menu-sandwich">
+            {{#if session.userid}}
+                    {{#if nivel}}
+                        <div id="menu-master-mobile">
+                                <li><a href="/Controle">Controle</a></li>
+                                <li><a href="/profile">Perfil</a></li>
+                                <li><a href="/ponto">Ponto</a></li>
+                                <li><a href="/historico">Histórico</a></li>
+                                <li><a href="/logout">Sair</a></li>
+                    {{else}}
+                        <div id="menu-logar-comum">
+                                <li><a href="/ponto">Ponto</a></li>
+                                <li><a href="/historico">Histórico</a></li>
+                                <li><a href="/logout">Sair</a></li>
+                    {{/if}}
+                    
+                
+                </div>
+            {{else}}
+                <div id="menu-logar">
+                    <ul>
+                        <li><a href="/">Login</a></li>
+                        <li><a href="/suporte">Suporte</a></li>
+                    </ul>   
+                </div>
+            {{/if}}
+        </div>
         {{{body}}}
     </div>
     
@@ -56,4 +90,5 @@
         <p><span>copyright 2023</span></p>
     </footer>
 </body>
+    <script src="js/menuSandwich.js"></script>
 </html>

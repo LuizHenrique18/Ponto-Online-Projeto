@@ -20,11 +20,92 @@
     .menu-options{
         display: none;
     }
+    .menu-master-mobile{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+
+    #menu-logar{
+        margin: 0;
+        display: flex;
+        justify-content: flex-start; 
+    }
+
+    #menu-logar-comum{
+        margin: 0;
+        display: flex;
+        justify-content: flex-start; 
+    }
+
+    #menu-logar-master{
+        margin: 0;
+    }
+
+    .buttao-sandwich{
+        display: flex;
+        height: auto;
+        width: 60px;
+    }
 }
 
 
 @media screen and (max-width:600px){
+    .menu-options{
+        display: none;
+    }
     .form-div input{
         margin-bottom: 0.7em;
+    }
+    .menu-master-mobile{
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    .menu-master-mobile li{
+        margin: 25px;
+    }
+    .buttao-sandwich{
+        display: flex;
+        height: auto;
+        width: 60px;
+    }
+    .container-dados-users{
+        width:350px;
+    }
+    .div-layout-dados{
+        width: 100%;
+    }
+    .div-layout-dados-menor{
+        width:100%;
+    }
+    .name-controler p{
+        font-size: 13px;
+    }
+
+    .titulo-controle{
+        font-size: 28px;
+    }
+
+    .button-register{
+        margin: 1em 55%;
+        width: 8em;
+        font-size: 10px;
+    }
+
+    .cpf{
+        display: none;
+    }
+
+    .titulo-dados-user{
+        font-size: 13px;
+    }
+
+    .container-dados-userss{
+        width:350px;
+    }
+    .container-itens-detalhados{
+        width:300px;
     }
 }

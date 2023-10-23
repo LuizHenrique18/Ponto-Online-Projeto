@@ -25,6 +25,8 @@ body {
     height: 45px;
     background-color: #ffffff;
     border-bottom:solid 2px rgba(0, 0, 0, 0.818);
+    
+    justify-content: space-between;
 }
 
 .logo-menu{
@@ -50,21 +52,45 @@ body {
     margin: 0 60%;
 }
 
+.menu-sandwich{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 50%;
+    z-index: 1;
+    width: 50%;
+    height:100%;
+    background-color: rgb(255, 255, 255);
+    border:solid 1px black;
+    transition: display 4s ease;
+}
 
-.menu-main ul{
+.menu-sandwich a{
+    font-size: 30px;
+}
+#menu-master-mobile{
+    display: flex;
+    flex-direction: column;
+    margin:40px 12px;
+    gap:15px;
+}
+
+
+.menu-options ul{
     display: flex;
     gap:40px;     
 }
 
-.menu-main ul li a{
+.menu-options ul li a{
     font-weight: bold;
     font-size:20px;
 }
-.menu-main a:hover{
+.menu-options a:hover{
     color:rgb(62, 57, 55);
     transition: 1s;
 }
-.menu-main a{
+.menu-options a{
     font-size: 22px;
     color:rgb(0, 0, 0);
     text-decoration: none;
@@ -72,6 +98,10 @@ body {
 
 ul, li{
     list-style-type: none;
+}
+
+.buttao-sandwich{
+    display: none;
 }
 
 
@@ -338,7 +368,7 @@ input::placeholder {
     transition: 1.0s;
     color:rgb(17, 209, 7);
 }
-img-olho-controle
+
 .div-ponto-entrada{
     display: flex;
     flex-direction: column;
@@ -520,7 +550,6 @@ img-olho-controle
 .perfil-info-historico div h2{
     margin: 3em 0 0 0;
 }
-
 
 .img-historico{
     width:15px;
