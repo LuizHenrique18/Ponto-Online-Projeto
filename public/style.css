@@ -104,7 +104,13 @@ ul, li{
     display: none;
 }
 
-
+#buttaoSand{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
 /* FOOTER */
 
 footer{
