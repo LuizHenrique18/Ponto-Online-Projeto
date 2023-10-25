@@ -691,6 +691,7 @@ input::placeholder {
     display: flex;
     align-items: flex-end;
     background-color: white;
+    border-bottom: solid 1px rgb(0, 0, 0);
     border-left:solid 1px rgb(0, 0, 0);
     width:50%;    
     white-space: nowrap;
@@ -706,6 +707,7 @@ input::placeholder {
 }
 
 .name-controler p{
+    border: none;
     color: rgb(0, 0, 0);
     margin:0 3px 0;
 }
