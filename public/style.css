@@ -75,6 +75,10 @@ body {
 .menu-sandwich a{
     font-size: 30px;
 }
+#buttaoSand{
+    width: 30px;
+    height: 30px;
+}
 
 #menu-master-mobile{
     display: flex;
