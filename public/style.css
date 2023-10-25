@@ -691,7 +691,6 @@ input::placeholder {
     display: flex;
     align-items: flex-end;
     background-color: white;
-    border-bottom: solid 1px rgb(0, 0, 0);
     border-left:solid 1px rgb(0, 0, 0);
     width:50%;    
     white-space: nowrap;
