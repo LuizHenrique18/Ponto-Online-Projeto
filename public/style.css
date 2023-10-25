@@ -678,8 +678,7 @@ input::placeholder {
     width:100%;
 
     display: flex;
-    justify-content: center;
-
+    align-items: center;
 }
 
 .titulo-dados-user h2{
@@ -707,7 +706,6 @@ input::placeholder {
 }
 
 .name-controler p{
-    border: none;
     color: rgb(0, 0, 0);
     margin:0 3px 0;
 }

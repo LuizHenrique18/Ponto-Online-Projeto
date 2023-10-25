@@ -51,6 +51,10 @@
         height: auto;
         width: 60px;
     }
+
+    .titulo-dados-user{
+        justify-content: center;
+    }
 }
 
 
@@ -100,11 +104,10 @@
     }
 
     .titulo-dados-user{
-        padding: 5px 0 0 0;
         height: 30px;
     }
     .titulo-dados-user h2{
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .form-div input{
@@ -113,18 +116,15 @@
     
     
     .div-layout-dados-menor{
-        width:100%;
+        width:380px;
     }
+    
     .name-controler p{
         font-size: 13px;
     }
 
     .cpf{
         display: none;
-    }
-
-    .titulo-dados-user{
-        font-size: 13px;
     }
 
     .container-dados-userss{
