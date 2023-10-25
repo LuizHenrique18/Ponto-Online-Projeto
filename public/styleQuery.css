@@ -1,4 +1,5 @@
 @media screen and (max-width:1300px){
+    /* BARRA DE MENU */
     .menu-options{
         width: 85%;
     }
@@ -8,6 +9,7 @@
     }
 }
 @media screen and (max-width:1110px){
+    /* BARRA DE MENU */
     .menu-options{
         width: 75%;
     }
@@ -17,15 +19,16 @@
     }
 }
 @media screen and (max-width:900px){
+    /* BARRA DE MENU */
     .menu-options{
         display: none;
     }
+    /* BARRA DE MENU MOBILE */
     .menu-master-mobile{
         display: flex;
         flex-direction: column;
         gap: 40px;
     }
-
 
     #menu-logar{
         margin: 0;
@@ -52,12 +55,12 @@
 
 
 @media screen and (max-width:600px){
+
+    /* BARRA DE MENU */
     .menu-options{
         display: none;
     }
-    .form-div input{
-        margin-bottom: 0.7em;
-    }
+    /* BARRA DE MENU MOBILE */
     .menu-master-mobile{
         display: flex;
         flex-direction: column;
@@ -68,32 +71,53 @@
     }
     .buttao-sandwich{
         display: flex;
-        height: 40px;
-        width: 40px;
+        height: auto;
+        width: 60px;
+    }
+    /* TÍTULO DE LOGIN */
+    .work-point p{
+        margin: 10% auto 0  ;
+        font-size: 40px;
     }
 
-    /*  DADOS USER  */
-    .container-dados-users{
-        width:350px;
+    /* CONTROLE DE DADOS */
+    .perfil-info-historico{
+        justify-content: center;
     }
-    .div-layout-dados{
-        width: 100%;
+
+    .perfil-info-historico div h1{
+        font-size: 22px;
     }
+
+    .titulo-controle{
+        font-size: 20px;
+    }
+    .users-controle{
+        width: 420px;
+    }
+    .container-dados-userss{
+        width: 200px;
+    }
+
+    .titulo-dados-user{
+        padding: 5px 0 0 0;
+        height: 30px;
+    }
+    div-layout-dados
+    .titulo-dados-user h2{
+        font-size: 20px;
+    }
+    
+    .form-div input{
+        margin-bottom: 0.7em;
+    }
+    
+    
     .div-layout-dados-menor{
         width:100%;
     }
     .name-controler p{
         font-size: 13px;
-    }
-
-    .titulo-controle{
-        font-size: 28px;
-    }
-
-    .button-register{
-        margin: 1em 55%;
-        width: 8em;
-        font-size: 10px;
     }
 
     .cpf{
@@ -105,9 +129,30 @@
     }
 
     .container-dados-userss{
-        width:350px;
+        width:390px;
+        display: flex;
+        justify-content: center;
     }
     .container-itens-detalhados{
         width:300px;
+    }
+
+    .button-register{
+        margin: 1em 55%;
+        width: 8em;
+        font-size: 10px;
+    }
+    /* HISTÓRICO DE CONTROLES */
+    .container-dados-users{
+        width:350px;
+    }
+    .div-layout-dados{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width:400px){
+    .div-layout-dados{
+        width: 370px;
     }
 }
