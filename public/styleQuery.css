@@ -24,25 +24,20 @@
         display: none;
     }
     /* BARRA DE MENU MOBILE */
-    .menu-master-mobile{
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
 
-    #menu-logar{
+    .menu-logar{
         margin: 0;
         display: flex;
         justify-content: flex-start; 
     }
 
-    #menu-logar-comum{
+    .menu-logar-comum{
         margin: 0;
         display: flex;
         justify-content: flex-start; 
     }
 
-    #menu-logar-master{
+    .menu-logar-master{
         margin: 0;
     }
 
@@ -70,9 +65,12 @@
         flex-direction: column;
         margin: 20px;
     }
-    .menu-master-mobile li{
-        margin: 25px;
+    
+
+    .menu-master-mobile li:hover{
+        background-color: rgb(247, 242, 242);
     }
+    
     .buttao-sandwich{
         display: flex;
         height: auto;

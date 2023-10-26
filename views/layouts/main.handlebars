@@ -19,14 +19,14 @@
         <div class="menu-options">
             {{#if session.userid}}
                     {{#if nivel}}
-                        <div id="menu-logar-master">
+                        <div class="menu-logar-master">
                                 <li><a href="/Controle">Controle</a></li>
                                 <li><a href="/profile">Perfil</a></li>
                                 <li><a href="/ponto">Ponto</a></li>
                                 <li><a href="/historico">Histórico</a></li>
                                 <li><a href="/logout">Sair</a></li>
                     {{else}}
-                        <div id="menu-logar-comum">
+                        <div class="menu-logar-comum">
                                 <li><a href="/ponto">Ponto</a></li>
                                 <li><a href="/historico">Histórico</a></li>
                                 <li><a href="/logout">Sair</a></li>
@@ -35,7 +35,7 @@
                 
                 </div>
             {{else}}
-                <div id="menu-logar">
+                <div class="menu-logar">
                         <li><a href="/">Login</a></li>
                         <li><a href="/suporte">Suporte</a></li>
                 </div>
@@ -52,23 +52,23 @@
         <div class="menu-sandwich">
             {{#if session.userid}}
                     {{#if nivel}}
-                        <div id="menu-master-mobile">
-                                <li><a href="/Controle">Controle</a></li>
-                                <li><a href="/profile">Perfil</a></li>
-                                <li><a href="/ponto">Ponto</a></li>
-                                <li><a href="/historico">Histórico</a></li>
-                                <li><a href="/logout">Sair</a></li>
+                        <div class="menu-master-mobile">
+                                <li><img src="img/visao.png" class="img-icon-menu"><a href="/Controle">Controle</a></li>
+                                <li><img src="img/perfil.png" class="img-icon-menu"><a href="/profile">Perfil</a></li>
+                                <li><img src="img/verificado.png" class="img-icon-menu"><a href="/ponto">Ponto</a></li>
+                                <li><img src="img/historia.png" class="img-icon-menu"><a href="/historico">Histórico</a></li>
+                                <li><img src="img/sair.png" class="img-icon-menu"><a href="/logout">Sair</a></li>
                     {{else}}
-                        <div id="menu-logar-comum">
-                                <li><a href="/ponto">Ponto</a></li>
-                                <li><a href="/historico">Histórico</a></li>
-                                <li><a href="/logout">Sair</a></li>
+                        <div class="menu-logar-comum">
+                                <li><img src="img/verificado.png" class="img-icon-menu"><a href="/ponto">Ponto</a></li>
+                                <li><img src="img/historia.png" class="img-icon-menu"><a href="/historico">Histórico</a></li>
+                                <li><img src="img/sair.png" class="img-icon-menu"><a href="/logout">Sair</a></li>
                     {{/if}}
                     
                 
                 </div>
             {{else}}
-                <div id="menu-logar">
+                <div class="menu-logar">
                         <li><a href="/">Login</a></li>
                         <li><a href="/suporte">Suporte</a></li>
                 </div>
