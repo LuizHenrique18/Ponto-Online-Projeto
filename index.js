@@ -12,6 +12,7 @@ const profileRouter = require('./routes/profileRouter')
 const historicoRouter = require('./routes/historicoRouter')
 const controleRoutes = require('./routes/controleRoutes')
 const geraExcelRouter = require('./routes/geraExcelRoutes')
+const suporteRouter = require('./routes/suporteRoutes')
 
 // Banco de dados
 const conn = require('./db/conn');
@@ -60,6 +61,7 @@ app.use('/', authRoutes)
 app.use('/', historicoRouter)
 app.use('/', controleRoutes)
 app.use('/', geraExcelRouter) 
+app.use('/', suporteRouter)
 
 app.listen(process.env.PORT || 3000)
 
