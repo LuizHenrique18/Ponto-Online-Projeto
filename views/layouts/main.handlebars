@@ -43,9 +43,9 @@
         </div>
 
 
-        {{#if session.userid}}
-            <div class="buttao-sandwich"><img src="img/menu-burger.png" id="buttaoSand" alt=""></div>
-        {{/if}}
+        
+        <div class="buttao-sandwich"><img src="img/menu-burger.png" id="buttaoSand" alt=""></div>
+        
     </div>
     
     <div class="page">
@@ -59,7 +59,7 @@
                                 <li><img src="img/historia.png" class="img-icon-menu"><a href="/historico">Histórico</a></li>
                                 <li><img src="img/sair.png" class="img-icon-menu"><a href="/logout">Sair</a></li>
                     {{else}}
-                        <div class="menu-logar-comum">
+                        <div class="menu-master-mobile">
                                 <li><img src="img/verificado.png" class="img-icon-menu"><a href="/ponto">Ponto</a></li>
                                 <li><img src="img/historia.png" class="img-icon-menu"><a href="/historico">Histórico</a></li>
                                 <li><img src="img/sair.png" class="img-icon-menu"><a href="/logout">Sair</a></li>
@@ -68,9 +68,9 @@
                 
                 </div>
             {{else}}
-                <div class="menu-logar">
-                        <li><a href="/">Login</a></li>
-                        <li><a href="/suporte">Suporte</a></li>
+               <div class="menu-master-mobile">
+                        <li><img src="img/perfil-login.png" class="img-icon-menu"><a href="/ponto">Login</a></li>
+                        <li><img src="img/configuracao.png" class="img-icon-menu"><a href="/suporte">Suporte</a></li>
                 </div>
             {{/if}}
         </div>
