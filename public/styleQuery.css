@@ -146,10 +146,76 @@
     .div-layout-dados{
         width: 400px;
     }
+    /* Suporte page */
+    .suporte-titulo{
+        height: 100px;
+    }
+    .suporte-titulo h2{
+        font-size: 20px;
+        margin: 30px 0 0 0;
+    }
+    .div-itens-suporte{
+        flex-direction: column;
+        gap: 20px;
+        justify-content: none;
+        height: 400px;
+    }
+    
+    .itens-suporte{
+        width: 190px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .itens-suporte p{
+        font-size: 16px;
+        margin:25px;
+    }
+    
+    /* SUPORTE - NOVO USUÁRIO */
+    
+    .suporte-titulo-novo-user{
+        height: 30px;
+    }
+    
+    .texto-novo-usuario h2{
+        margin:14px 10px;
+        font-size: 25px;
+
+    }
+
+    .texto-novo-usuario p{
+        font-size:10px;
+        margin: 0 10px; 
+        text-align: justify;
+    }
+
+    .form-div-novo-usuario{
+        margin: 20px 12px;
+        gap: 13px;
+    }
+
+    .input-new-usuario{
+        width: 180px;
+        margin: 0;
+        padding: 6px;
+    }
+
+    .input-new-usuario::placeholder{
+        font-size: 12px;
+    }
+
+    .buttom-novo-usuario{
+        width: 150px;
+        height: 30px;
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width:400px){
     .div-layout-dados{
         width: 370px;
     }
+
+    
 }

@@ -867,21 +867,108 @@ input::placeholder {
     display: flex;
     flex-direction: row;
 
-    border: solid 1px red;
-    align-items: center;
     justify-content: center;
     gap: 50px;
+}
+
+.div-itens-suporte a{
+    margin:0;
+}
+
+.suporte-titulo{
+    height: 300px;
+    width: 100%;
+    background-color: #039F7A;
+    text-align: center;
+}
+
+.suporte-titulo h2{
+    color:white;
+    font-size: 45px;
+    margin: 90px 0 0 0;
 }
 
 .itens-suporte{
     width: 280px;
     height: 150px;
-    border: solid grey;
+    background-color: #F3F3F3;
     text-align: center;
-    
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 7px 7px 2px rgb(63, 63, 63);
+
+    margin: 55px 0 0 0;
+}
+
+
+.itens-suporte:hover{
+    transition: 1.3s;
+    background-color:rgb(212, 212, 212);
 }
 
 .itens-suporte p{
     font-size: 25px;    
+    font-weight: bold;
     margin:55px 0 0 0
+}
+
+/* Suporte - Novo Usuário */
+.suporte-titulo-novo-user{
+    height: 80px;
+    width: 100%;
+    background-color: #039F7A;
+}
+
+.texto-novo-usuario h2{
+    font-size: 35px;
+    margin: 30px 60px 10px;
+}
+
+.texto-novo-usuario p{
+    font-size: 16px;
+    margin: 0 60px;
+}
+
+.form-div-novo-usuario{
+   
+    display: flex;
+    flex-direction: column;
+
+    width:300px;    
+    margin: 15px 68px;
+}
+
+.input-new-usuario{
+    width: 280px;
+    padding: 12px;
+    margin-bottom: 1em;
+    margin-top:0.1em;
+    border: solid 1px rgb(113, 112, 112);
+    border-radius: 3px;
+    font-size: 20px;
+    color: #000000;
+}
+
+.input-new-usuario::placeholder{
+    font-size:18px;
+    font-weight: bold;
+    color: rgb(97, 97, 97);
+}
+
+.buttom-novo-usuario{
+    width: 200px;
+    border: none;
+    background-color: #a6a6a6;
+    box-shadow: 4px 4px 0 black;
+    height: 45px;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+.buttom-novo-usuario:hover{
+    background-color: #8b8a8a;
+    transition: 1.2s;
 }
