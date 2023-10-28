@@ -217,5 +217,55 @@
         width: 370px;
     }
 
+     /* SUPORTE - RELATAR ERRO */
+
+     .div-relatar-erro{
+        height: 350px;
+        margin: 20px 10px;
+    }
+    .div-relatar-erro h2{
+        font-size: 17px;
+    }
+    .div-relatar-erro textarea{
+        height: 80px;
+    }
+    .div-relatar-erro textarea::placeholder{
+        font-size: 12px;
+    }
+    .div-relatar-erro input{
+        padding: 7px;
+        width: 130px;
+        font-size: 14px;
+    }
+
+    /* SUPORTE - ENTRAR EM CONTATO */
+    .h2-contato{
+        font-size: 13px;
+        text-align: justify;
+    }
     
+    .div-itens-contato{
+        gap: 28px;
+    }
+
+    .itens-entrar-em-contato{
+        width: 240px;
+
+    }
+
+    .itens-entrar-em-contato p{
+        font-size: 13px;
+    }
+
+    .img-icon-contato{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width:400px){
+    .div-layout-dados{
+        width: 370px;
+    }
+
 }
