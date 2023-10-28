@@ -210,17 +210,10 @@
         height: 30px;
         font-size: 15px;
     }
-}
-
-@media screen and (max-width:400px){
-    .div-layout-dados{
-        width: 370px;
-    }
-
      /* SUPORTE - RELATAR ERRO */
 
      .div-relatar-erro{
-        height: 350px;
+        height: 250px;
         margin: 20px 10px;
     }
     .div-relatar-erro h2{
@@ -236,11 +229,12 @@
         padding: 7px;
         width: 130px;
         font-size: 14px;
+        margin-top: 20px;
     }
 
     /* SUPORTE - ENTRAR EM CONTATO */
     .h2-contato{
-        font-size: 13px;
+        font-size: 15px;
         text-align: justify;
     }
     
@@ -261,6 +255,14 @@
         width: 35px;
         height: 35px;
     }
+}
+
+@media screen and (max-width:400px){
+    .div-layout-dados{
+        width: 370px;
+    }
+
+    
 }
 
 @media screen and (max-width:400px){
