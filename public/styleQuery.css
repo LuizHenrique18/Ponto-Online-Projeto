@@ -81,7 +81,10 @@
         margin: 10% auto 0  ;
         font-size: 40px;
     }
-
+    /* TÍTULO DO REGISTE */
+    .titulo-p{
+        font-size: 25px;
+    }
     /* CONTROLE DE DADOS */
     .perfil-info-historico{
         justify-content: center;

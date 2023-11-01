@@ -1,3 +1,24 @@
+// Faz aquele circulo enquanto a page está carregando para iniciar a contagem do horário
+
+const carregador = document.querySelector('.loader')
+
+function iniciarCarregamento() {
+    carregador.style.display = 'block';
+    }
+    
+    // Quando o carregamento da parte específica estiver concluído
+  function concluirCarregamento() {
+    carregador.style.display = 'none';
+}
+
+
+const pagePonto = document.getElementById('page-pontos')
+pagePonto.style.display = 'none'
+setTimeout(()=>{
+    pagePonto.style.display = 'flex'
+    concluirCarregamento()
+}, 1000)
+
 // CONFIGURAÇÃO DO RELÓGIO
 const iniciarContagem = document.querySelector('.confirmar-entrada')
 
@@ -146,3 +167,7 @@ saida.addEventListener('click', ()=>{
     localStorage.removeItem('horaEntrada');
     localStorage.removeItem('horaSaida');
 })
+
+
+
+
