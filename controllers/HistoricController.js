@@ -97,15 +97,19 @@ module.exports = class HistoricController {
             console.log(err)
         }
 
+        //VALIDADOR PARA INFORMAR A VIEW DE QUE A SAIDA É NULL, E ASSIM MOSTRAR A LINHA DA TABELA COM UMA COR DIFERENTE
+        let informaNullSaida = true
+        if(arraySaida[arraySaida.length-1]==null){
+            informaNullSaida = false
+        }
+
         //Nivel do usuário
    
         let nivel = user.nivel
         console.log(dadosPessoa)
         console.log(arrayDeIdData)
 
-        res.render('historico/historico', {userName, userEmail, cpfFormatado, dadosPessoa, nivel})
-
-            
+        res.render('historico/historico', {userName, userEmail, cpfFormatado, dadosPessoa, nivel, informaNullSaida})
     }
 
     static async historicoDia(req,res){
@@ -143,16 +147,20 @@ module.exports = class HistoricController {
         let dadosPessoa = []
         for(let i=0; i<dadosDoDia.length;i++){
             /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
-            entrada.push(dadosDoDia[i].horaEntrada)
-            saida.push(dadosDoDia[i].horaSaida)
-            tempo.push(dadosDoDia[i].tempoDeTrabalho)
-            descricao.push(dadosDoDia[i].descricao)
+
             data = dadosDoDia[i].dataDeCriacao
             id.push(dadosDoDia[i].id)
             dadosPessoa.push({datas:dadosDoDia[i].dataDeCriacao, entrada:dadosDoDia[i].horaEntrada, saida:dadosDoDia[i].horaSaida, tempo:dadosDoDia[i].tempoDeTrabalho})
         }
         //Nivel de acesso
         let nivel = user.nivel
-        res.render('historico/historicoDetalhado', {idData,data, dadosPessoa, id, descricao, cpfFormatado, userCpf, userEmail, userName, nivel})
+
+        let validadorSaida = dadosDoDia[dadosDoDia.length -1].horaSaida
+        let informaNullSaida = true
+        if(validadorSaida==null){
+            informaNullSaida = false
+        }
+
+        res.render('historico/historicoDetalhado', {idData,data, dadosPessoa, id, descricao, cpfFormatado, userCpf, userEmail, userName, nivel, informaNullSaida})
     }
 }

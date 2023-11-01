@@ -8,23 +8,59 @@ const somaEntradaSaida = require('../helpers/SomaEntradaSaida/SomaEntradaSaida')
 module.exports = class PagController {
     static async ponto(req, res){ 
         //Lógica para mostrar o nome e email do usuário
-        let userId = req.session.userid
-        let user = await User.findOne({where:{id:userId}})
-        console.log(user.name, 'Aqui baby')
-        let nome = user.name
-        let email = user.email
+        let userId = req.session.userid;
+        let user = await User.findOne({where:{id:userId}});
+        console.log(user.name, 'Aqui baby');
+        let nome = user.name;
+        let email = user.email;
         
-        let nivel = user.nivel
+        let nivel = user.nivel;
+
+        let verificaSaida = await Horarios.findOne({where:{horariosId:userId},order:[[
+            'createdAt','DESC' 
+        ]]
+        });
+        console.log(verificaSaida, 'AQUI ABBYA');
+        console.log(verificaSaida.horaSaida);
+        
+        let arrayTeste = []
+        let butEntrada = true;
+        if(verificaSaida.horaSaida == null){
+            butEntrada = false;
+        };
+        arrayTeste.push(butEntrada)
         
         // Lógica para retornar os horários 
         // let horario = await Horarios.findall({})
 
-        res.render('baterponto/ponto',{email, nome, nivel})
+        res.render('baterponto/ponto',{email, nome, nivel, butEntrada});
     }
    
-
     static async pontoEntradaPost(req,res){
+        let dados = req.body.dados
+
+        //Dados que vinheram do body
+        let pontoEntrada = dados.pontoEntrada
+        let pontoSaida   = null
+        let tempoAdicionar = null
+        let dataValida   = dados.data
         
+        let userId = req.session.userid
+        let verificadorBD = null
+        
+        // Requisições ao BD para disponibilizar informações na view        
+        let user = await User.findOne({where:{id:userId}})
+        let nome = user.name
+        let email = user.email
+
+
+        await Horarios.create({horaEntrada:pontoEntrada, horaSaida:pontoSaida, dataDeCriacao:dataValida, tempoDeTrabalho:tempoAdicionar, horariosId:userId})
+
+        res.redirect('/')
+    }
+
+    static async pontoEntrada(req,res){
+        /*
         //Data para identificar de qual o dia de criação - vai servir como parâmetro na hora de atualizar os dados de entrada e saída
         const data = new Date().now;
 
@@ -74,9 +110,32 @@ module.exports = class PagController {
         // Lógica para retornar os horários 
         // let horario = await Horarios.findall({})
 
+            */
+        let dados        = req.body.dados
+        let pontoSaida   = dados.horaSaida
+        let pontoEntrada = dados.entrada
+        let dataValida   = dados.data
+        
+        let tempoTrabalhado = somaEntradaSaida(pontoEntrada, pontoSaida)
+        console.log(dados)
+        console.log('OPASMpdomsaDASOKDNDNASOID')
+        let dadosSaida = {horaSaida:pontoSaida, tempoDeTrabalho:tempoTrabalhado}
+        
+        let userId = req.session.userid
+        let user = await User.findOne({where:{id:userId}})
+        let nome = user.name
+        let email = user.email
+        let verificadorBD = null
 
-        res.render('baterponto/ponto', {verificadorBD, email, nome})
+        await Horarios.update(dadosSaida,{where:{horariosId:userId, dataDeCriacao:dataValida ,horaSaida:null}})
+        .then(()=>{
+            console.log('Valores atualizados com sucesso')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
 
+        res.redirect('/')
     }
 }
 

@@ -471,6 +471,7 @@ input::placeholder {
 }
 
 .button-ent{
+    display: block;
     border:solid 1px rgb(0, 0, 0);
     cursor: pointer;
     color: white;
@@ -631,6 +632,7 @@ input::placeholder {
     width: 30%;
 }
 
+
 .item-all-page-historico{
     margin: 0;
     background-color: #039F7A;
@@ -716,6 +718,9 @@ input::placeholder {
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+}
+#identSaida{
+    background-color: rgb(203, 202, 202);
 }
 
 .ver-mais{

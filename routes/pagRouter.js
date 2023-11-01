@@ -7,6 +7,6 @@ const authenticationMiddleware = require('../config/authenticationMiddleware')
 
 //Rotas
 router.get('/ponto',authenticationMiddleware ,PagController.ponto)
-router.post('/pontoEntrada',authenticationMiddleware ,PagController.pontoEntradaPost)
-
+router.post('/pontoEntrada',authenticationMiddleware ,PagController.pontoEntrada)
+router.post('/pontoEntradaPost', PagController.pontoEntradaPost)
 module.exports = router

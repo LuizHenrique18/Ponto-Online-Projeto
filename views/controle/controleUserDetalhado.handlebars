@@ -15,8 +15,14 @@
                                 <div class="div-layout-dados-menor">   
                                     <div class="name-controler"><p translate="no">{{this.datas}}</p></div>
                                     <div class="name-controler"><p translate="no">{{this.entrada}}</p></div>
-                                    <div class="name-controler"><p translate="no">{{this.saida}}</p></div>
-                                    <div class="name-controler ver-mais"><p translate="no">{{this.tempo}}</p></div>
+                                    {{#if this.saida}}
+                                        <div class="name-controler"><p translate="no">{{this.saida}}</p></div>
+                                        <div class="name-controler ver-mais"><p translate="no">{{this.tempo}}</p></div>
+                                    {{else}}
+                                        <div class="name-controler" id="identSaida"><p translate="no">{{this.saida}}</p></div>
+                                        <div class="name-controler ver-mais" id="identSaida"><p translate="no">{{this.tempo}}</p></div>
+                                    {{/if}}
+                                    
                                 </div>
                     {{/each}}
                 </div>

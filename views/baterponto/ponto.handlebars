@@ -16,9 +16,11 @@
                 
                     <div><input type="text" name="timeData" class="timeData" value="00:00:00"></div>
                     <div class="div-ponto-entrada">
-                        <div class="button-ent" id="item-saida"><h2>Saída</h2></div>
+                        {{#if butEntrada}}
                         <div class="button-ent" id="item-entrada"><h2>Entrada</h2></div>
-                        
+                        {{else}}
+                        <div class="button-ent" id="item-saida"><h2>Saída</h2></div>
+                        {{/if}}
                     </div>  
             </div>
 
