@@ -120,10 +120,19 @@ module.exports = class PagController {
 
             */
         let dados        = req.body.dados
-        let pontoSaida   = dados.horaSaida
-        let pontoEntrada = dados.entrada
         let dataValida   = dados.data
-        
+        let pontoSaida   = dados.horaSaida
+        let pontoEntrada = null
+
+        await Horarios.findOne({where:{horariosIs:userId}, order:
+            [['createdAt','DESC']]
+        }).then((response)=>{
+            pontoEntrada = response.horaEntrada
+            console.log(pontoEntrada)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
         let tempoTrabalhado = somaEntradaSaida(pontoEntrada, pontoSaida)
         console.log(dados)
         console.log('OPASMpdomsaDASOKDNDNASOID')
