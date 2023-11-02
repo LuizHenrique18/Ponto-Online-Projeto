@@ -124,6 +124,8 @@ module.exports = class PagController {
         let pontoSaida   = dados.horaSaida
         let pontoEntrada = null
 
+        let userId = req.session.userid
+
         await Horarios.findOne({where:{horariosIs:userId}, order:
             [['createdAt','DESC']]
         }).then((response)=>{
@@ -138,7 +140,6 @@ module.exports = class PagController {
         console.log('OPASMpdomsaDASOKDNDNASOID')
         let dadosSaida = {horaSaida:pontoSaida, tempoDeTrabalho:tempoTrabalhado}
         
-        let userId = req.session.userid
         let user = await User.findOne({where:{id:userId}})
         let nome = user.name
         let email = user.email
