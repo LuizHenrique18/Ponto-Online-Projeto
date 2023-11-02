@@ -126,7 +126,7 @@ module.exports = class PagController {
 
         let userId = req.session.userid
 
-        await Horarios.findOne({where:{horariosIs:userId}, order:
+        await Horarios.findOne({where:{horariosId:userId}, order:
             [['createdAt','DESC']]
         }).then((response)=>{
             pontoEntrada = response.horaEntrada
