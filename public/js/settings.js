@@ -76,53 +76,61 @@ const saida = document.getElementById('item-saida')
 const confirmarEntrada = document.querySelector('.confirmar-entrada');
 const voltar = document.querySelector('.button-voltar')
 
+localStorage.removeItem('horaEntrada');
 
 
 let horaEntradaResgatarValor = null
 let horaSaidaResgatarValor = null
 
 //PEGA OS HORÁRIO DE ENTRADA DO USER E GUARDA 
-if(entrada == null){
-    console.log('espere')
-}else{
-    entrada.addEventListener('click', ()=>{
-        // Setar data atual do usuário durante o evento de clique no botão de entrada
-        const dataAtual = new Date    
-        let options = {timeZone:'America/Sao_Paulo', year:'numeric', month:'numeric', day:'numeric'}
-        let formatado = new Intl.DateTimeFormat('pt-BR', options);
-        let dataFormatada = formatado.format(dataAtual);
-        //Formatando data para ficar de forma padrão
-        let dia  =String(dataFormatada).slice('0','2') 
-        let mes = String(dataFormatada).slice('3','5')  
-        let ano =String(dataFormatada).slice('6','10')  
+    if(entrada == null){
+        console.log('espere')
+    }else{
+        entrada.addEventListener('click', ()=>{
+                let acessoEntrada = localStorage.getItem('horaEntrada') // Responsável por não deixar o user fazer mais de uma solicitação, enquanto não tiver sido completada
+                console.log(acessoEntrada, 'Aqui')
+                if(acessoEntrada === null){
+                    localStorage.setItem('horaEntrada',cronometro.value) 
+                    // Setar data atual do usuário durante o evento de clique no botão de entrada
+                    const dataAtual = new Date    
+                    let options = {timeZone:'America/Sao_Paulo', year:'numeric', month:'numeric', day:'numeric'}
+                    let formatado = new Intl.DateTimeFormat('pt-BR', options);
+                    let dataFormatada = formatado.format(dataAtual);
+                    //Formatando data para ficar de forma padrão
+                    let dia  =String(dataFormatada).slice('0','2') 
+                    let mes = String(dataFormatada).slice('3','5')  
+                    let ano =String(dataFormatada).slice('6','10')  
 
-        let dataValida = `${dia}/${mes}/${ano}`;
+                    let dataValida = `${dia}/${mes}/${ano}`;
 
-        //Guardando data na memória do user para ser usado como comparação quando o user for dar saída
-        localStorage.setItem('entradaTempoFormatado', dataFormatada)
+                    //Guardando data na memória do user para ser usado como comparação quando o user for dar saída
+                    localStorage.setItem('entradaTempoFormatado', dataFormatada)
 
-        localStorage.setItem('horaEntrada',cronometro.value)  
-        horaEntradaResgatarValor = cronometro.value
-        horaSaidaResgatarValor =  null
-        // Dados que serão enviados
-        let dadosPonto = {pontoEntrada:horaEntradaResgatarValor, data:dataValida}
-        //Enviando dados
-        fetch('/pontoEntradaPost', {
-            method:'POST',headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({dados:dadosPonto})
-            
+                     
+                    horaEntradaResgatarValor = cronometro.value
+                    horaSaidaResgatarValor =  null
+                    // Dados que serão enviados
+                    let dadosPonto = {pontoEntrada:horaEntradaResgatarValor, data:dataValida}
+                    //Enviando dados
+                    fetch('/pontoEntradaPost', {
+                        method:'POST',headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body:JSON.stringify({dados:dadosPonto})
+                        
+                    })
+                    .then(()=>{
+                        location.reload();
+                    })
+                    .catch((err)=>{
+                        console.log(err)
+                    })
+                }else{
+                    console.log('Espere a solicitação ser completada')
+                }
         })
-        .then(()=>{
-            console.log('dados enviados com sucesso')
-            location.reload();
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    })
-}
+    }      
+
 //PEGA OS HORÁRIO DE SAÍDA DO USER E GUARDA, TAMBÉM ENVIA OS DADOS PARA O CONTROLLER ASSIM QUE É DADA A SAÍDA 
 saida.addEventListener('click', ()=>{
     // Setar data atual do usuário durante o evento de clique no botão de entrada
@@ -149,7 +157,8 @@ saida.addEventListener('click', ()=>{
     console.log(horaEntradaResgatarValor, horaSaidaResgatarValor)
     let dadosPontoSaida = {horaSaida:horaSaidaResgatarValor, data:dataValida, entrada:horaEntradaResgatarValor}
 
-
+    localStorage.removeItem('horaEntrada');
+    localStorage.removeItem('horaSaida');
     fetch('/pontoEntrada',{
         method:'POST',
         headers: {
@@ -163,9 +172,6 @@ saida.addEventListener('click', ()=>{
     .catch(error => {
     console.error('Erro ao enviar os dados para o servidor:', error);
     });
-
-    localStorage.removeItem('horaEntrada');
-    localStorage.removeItem('horaSaida');
 })
 
 
