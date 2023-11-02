@@ -15,19 +15,27 @@ module.exports = class PagController {
         let email = user.email;
         
         let nivel = user.nivel;
-
-        let verificaSaida = await Horarios.findOne({where:{horariosId:userId},order:[[
+        let butEntrada = true;
+        await Horarios.findOne({where:{horariosId:userId},order:[[
             'createdAt','DESC' 
         ]]
-        });
-        console.log(verificaSaida, 'AQUI ABBYA');
-        console.log(verificaSaida.horaSaida);
+        })
+        .then((ResponseData)=>{
+            if(ResponseData){
+                if(ResponseData.horaSaida == null){
+                    butEntrada = false;
+                };
+            }else{
+                console.log('Não tem nenhum dado')
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
         
         let arrayTeste = []
-        let butEntrada = true;
-        if(verificaSaida.horaSaida == null){
-            butEntrada = false;
-        };
+        
+        
         arrayTeste.push(butEntrada)
         
         // Lógica para retornar os horários 
