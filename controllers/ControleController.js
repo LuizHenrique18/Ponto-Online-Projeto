@@ -187,10 +187,17 @@ module.exports = class ControleController{
         let data
 
          for(let i=0; i<dadosDoDia.length;i++){
+            //Recuperando imagem do banco de dados
+            let imageId = dadosDoDia[i].id
+            console.log('imagem id', imageId)
+            let imagem = await Horarios.findOne({where:{id:imageId},raw: true,attributes: ['image']})
+            let caminhoImagemFormatado = String(imagem.image).slice(10)
+        
              /* ADICIONANDO OS DADOS NOS ARRAYS QUE SERÃO VIZUALIZADOS NA VIEW */
              id.push(dadosDoDia[i].id)
-             dadosPessoa.push({datas:dadosDoDia[i].dataDeCriacao, entrada:dadosDoDia[i].horaEntrada, saida:dadosDoDia[i].horaSaida, tempo:dadosDoDia[i].tempoDeTrabalho})
+             dadosPessoa.push({datas:dadosDoDia[i].dataDeCriacao, entrada:dadosDoDia[i].horaEntrada, saida:dadosDoDia[i].horaSaida, tempo:dadosDoDia[i].tempoDeTrabalho, imagemCaminho:caminhoImagemFormatado})
              data = dadosDoDia[i].dataDeCriacao
+             
         }
 
         //VALIDADOR PARA INFORMAR A VIEW DE QUE A SAIDA É NULL, E ASSIM MOSTRAR A LINHA DA TABELA COM UMA COR DIFERENTE
@@ -204,8 +211,5 @@ module.exports = class ControleController{
          console.log(dadosPessoa)
          res.render('controle/controleUserDetalhado', {data, idData, dadosPessoa, id, cpfFormatado, userCpf, userEmail, userName, nivel})
      }
-
-
-  
 
 }

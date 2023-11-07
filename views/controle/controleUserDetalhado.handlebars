@@ -9,7 +9,8 @@
                             <div class="titulo-dados-user"><h2>Data</h2></div>
                             <div class="titulo-dados-user"><h2>Entrada</h3></div>
                             <div class="titulo-dados-user"><h2>Saida</h2></div>
-                            <div class="titulo-dados-user ver-mais"><h2>Tempo</h2></div>
+                            <div class="titulo-dados-user"><h2>Tempo</h2></div>
+                            <div class="titulo-dados-user ver-mais"><h2>Ver fotos</h2></div>
                     </div>
                     {{#each dadosPessoa}}
                                 <div class="div-layout-dados-menor">   
@@ -17,13 +18,14 @@
                                     <div class="name-controler"><p translate="no">{{this.entrada}}</p></div>
                                     {{#if this.saida}}
                                         <div class="name-controler"><p translate="no">{{this.saida}}</p></div>
-                                        <div class="name-controler ver-mais"><p translate="no">{{this.tempo}}</p></div>
+                                        <div class="name-controler"><p translate="no">{{this.tempo}}</p></div>
                                     {{else}}
                                         <div class="name-controler" id="identSaida"><p translate="no">{{this.saida}}</p></div>
-                                        <div class="name-controler ver-mais" id="identSaida"><p translate="no">{{this.tempo}}</p></div>
+                                        <div class="name-controler" id="identSaida"><img src="{{this.tempo}}"></img></div>
                                     {{/if}}
-                                    
+                                        <div class="name-controler ver-mais" class="vizualizarImagem"><a href="{{this.imagemCaminho}}" target="_blank"><img class="img-icon" src="img/lupa.png" ></a></div>
                                 </div>
+                                
                     {{/each}}
                 </div>
 

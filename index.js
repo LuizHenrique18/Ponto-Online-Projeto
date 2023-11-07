@@ -17,12 +17,15 @@ const suporteRouter = require('./routes/suporteRoutes')
 // Banco de dados
 const conn = require('./db/conn');
 
+app.use(express.static('imgPontos'))
 app.use(express.static('public'))
 app.use(
-    express.urlencoded({
-        extended:true,
+    bodyParser.urlencoded({
+        limit:'50mb',
+        extended:true
     })
 )
+app.use(bodyParser.json({limit:'50mb'}))
 
 app.use(
     cookieSession({

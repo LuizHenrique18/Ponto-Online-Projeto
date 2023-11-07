@@ -18,6 +18,9 @@ const Horarios = db.define('horarios',{
     },
     dataDeCriacao:{
         type:DataTypes.STRING
+    },
+    image:{
+        type:DataTypes.STRING
     }
 })
 

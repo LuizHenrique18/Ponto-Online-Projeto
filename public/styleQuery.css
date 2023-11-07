@@ -258,6 +258,24 @@
         width: 35px;
         height: 35px;
     }
+    
+    /*PÁGINA DE PONTO - PÁGINA DE TIRAR FOTO*/
+    .div-video{
+        width: 350px;
+        height: 500px;
+    }
+    .titulo-retrato-video p{
+        font-size:15px;
+    }
+
+    .butfotosenviar{
+        width: 120px;
+    }
+
+    #canvas{
+        height: 300px;
+        margin: 14%;
+    }
 }
 
 @media screen and (max-width:400px){

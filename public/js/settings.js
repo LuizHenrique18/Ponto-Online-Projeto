@@ -83,53 +83,152 @@ let horaEntradaResgatarValor = null
 let horaSaidaResgatarValor = null
 
 //PEGA OS HORÁRIO DE ENTRADA DO USER E GUARDA 
-    if(entrada == null){
-        console.log('espere')
-    }else{
-        entrada.addEventListener('click', ()=>{
-                let acessoEntrada = localStorage.getItem('horaEntrada') // Responsável por não deixar o user fazer mais de uma solicitação, enquanto não tiver sido completada
-                console.log(acessoEntrada, 'Aqui')
-                if(acessoEntrada === null){
-                    localStorage.setItem('horaEntrada',cronometro.value) 
-                    // Setar data atual do usuário durante o evento de clique no botão de entrada
-                    const dataAtual = new Date    
-                    let options = {timeZone:'America/Sao_Paulo', year:'numeric', month:'numeric', day:'numeric'}
-                    let formatado = new Intl.DateTimeFormat('pt-BR', options);
-                    let dataFormatada = formatado.format(dataAtual);
-                    //Formatando data para ficar de forma padrão
-                    let dia  =String(dataFormatada).slice('0','2') 
-                    let mes = String(dataFormatada).slice('3','5')  
-                    let ano =String(dataFormatada).slice('6','10')  
+if(entrada == null){
+    console.log('espere')
+}else{
+    entrada.addEventListener('click', ()=>{
+        let tempoDeEntrada = cronometro.value
+        console.log(tempoDeEntrada, 'tempo de entrada aqui')
+            // Setar data atual do usuário durante o evento de clique no botão de entrada
+            const dataAtual = new Date    
+            let options = {timeZone:'America/Sao_Paulo', year:'numeric', month:'numeric', day:'numeric'}
+            let formatado = new Intl.DateTimeFormat('pt-BR', options);
+            let dataFormatada = formatado.format(dataAtual);
+            //Formatando data para ficar de forma padrão
+            let dia  =String(dataFormatada).slice('0','2') 
+            let mes = String(dataFormatada).slice('3','5')  
+            let ano =String(dataFormatada).slice('6','10')  
 
-                    let dataValida = `${dia}/${mes}/${ano}`;
+            let dataValida = `${dia}/${mes}/${ano}`;
 
-                    //Guardando data na memória do user para ser usado como comparação quando o user for dar saída
-                    localStorage.setItem('entradaTempoFormatado', dataFormatada)
+            //Guardando data na memória do user para ser usado como comparação quando o user for dar saída
+            localStorage.setItem('entradaTempoFormatado', dataFormatada)
 
-                     
-                    horaEntradaResgatarValor = cronometro.value
-                    horaSaidaResgatarValor =  null
-                    // Dados que serão enviados
-                    let dadosPonto = {pontoEntrada:horaEntradaResgatarValor, data:dataValida}
-                    //Enviando dados
-                    fetch('/pontoEntradaPost', {
-                        method:'POST',headers:{
-                            'Content-Type':'application/json'
-                        },
-                        body:JSON.stringify({dados:dadosPonto})
-                        
+
+            /* FOTO */
+                let divPonto = document.querySelector('.bater-ponto')    
+                let divVideo = document.querySelector('.div-video')
+
+                let cam = document.querySelector('#tirar-foto')
+                let canvas = document.getElementById('canvas')
+                let clique = document.getElementById('cliqueaqui')
+                let parar = document.getElementById('pararCamera')
+
+                let enviar = document.getElementById('enviar')
+                let novaFoto = document.getElementById('novafoto')
+
+                //Botões
+                enviar.style.display = 'none'
+                novaFoto.style.display = 'none'
+
+                divPonto.style.display = 'none'
+                canvas.style.display = 'none'
+                divVideo.style.display = 'flex'
+                
+                cam.addEventListener('click',()=>{
+                    console.log('Aqui')
+                })
+                
+                //Gravar
+                navigator.mediaDevices.getUserMedia({video:true})
+                .then((scream)=>{
+                    cam.srcObject = scream
+                    cam.play()
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+
+                //Tirar Foto
+                clique.addEventListener('click', ()=>{
+                    canvas.style.display = 'block'
+                    canvas.height = cam.videoHeight
+                    canvas.width = cam.videoWidth
+                    let context = canvas.getContext('2d')
+                    
+                    context.drawImage(cam, 0, 0)
+                    cam.style.display = 'none'
+                    cam.srcObject.getTracks().forEach(track => {
+                        track.stop()
                     })
-                    .then(()=>{
-                        location.reload();
+                    
+                    console.log('Deu certo')
+                    parar.style.display = 'none'
+                    clique.style.display = 'none'
+                    enviar.style.display = 'flex'
+                    novaFoto.style.display = 'flex'
+                })
+                //Parar Camera
+                parar.addEventListener('click', ()=>{
+                    cam.srcObject.getTracks().forEach(track => {
+                        track.stop()
+                    })
+                    divVideo.style.display = 'none'
+                    canvas.style.display = 'none'
+
+                    divPonto.style.display = 'flex'
+                    localStorage.removeItem('horaEntrada');
+
+                })
+            
+                novaFoto.addEventListener('click',()=>{
+                    canvas.style.display = 'none'
+                    cam.style.display = 'block'
+                    console.log('AQUI') 
+                    navigator.mediaDevices.getUserMedia({video:true})
+                    .then((scream)=>{
+                        cam.srcObject = scream
+                        cam.play()
                     })
                     .catch((err)=>{
                         console.log(err)
                     })
-                }else{
-                    console.log('Espere a solicitação ser completada')
-                }
-        })
-    }      
+                    parar.style.display = 'flex'
+                    clique.style.display = 'flex'
+                    enviar.style.display = 'none'
+                    novaFoto.style.display = 'none'
+
+                })
+
+                enviar.addEventListener('click', ()=>{
+                        let acessoEntrada = localStorage.getItem('horaEntrada');
+                        if(acessoEntrada === null){
+                            localStorage.setItem('horaEntrada',tempoDeEntrada); 
+                            let horaEntradaResgatarValor = tempoDeEntrada;
+                            let dataImage = canvas.toDataURL()
+                            let dadosPonto = {pontoEntrada:horaEntradaResgatarValor, data:dataValida, image:dataImage}
+    
+                            
+                            fetch('/pontoEntradaPost', {
+                                method:'POST',
+                                headers:{
+                                    'Content-Type':'application/json'
+                                },
+                                body:JSON.stringify({dados:dadosPonto})
+                                
+                            })
+                            .then(()=>{
+                                console.log('Dados Enviados com sucesso')
+                                console.log(dataImage)
+                                location.reload();
+                            })
+                            .catch((err)=>{
+                                console.log(err)
+                            })
+                        }else{
+                            console.log('Espere a solicitação ser completada')
+                        }
+                    })
+
+                horaEntradaResgatarValor = cronometro.value
+                horaSaidaResgatarValor =  null
+                // Dados que serão enviados
+                //Enviando dados
+                
+            
+
+    })
+}      
 
 //PEGA OS HORÁRIO DE SAÍDA DO USER E GUARDA, TAMBÉM ENVIA OS DADOS PARA O CONTROLLER ASSIM QUE É DADA A SAÍDA 
 saida.addEventListener('click', ()=>{
@@ -150,11 +249,9 @@ saida.addEventListener('click', ()=>{
         
     horaEntradaResgatarValor = localStorage.getItem('horaEntrada');
     horaSaidaResgatarValor  = localStorage.getItem('horaSaida');
-    console.log(horaSaidaResgatarValor, 'horasaidaa');
 
     // TEXT AREA
 
-    console.log(horaEntradaResgatarValor, horaSaidaResgatarValor)
     let dadosPontoSaida = {horaSaida:horaSaidaResgatarValor, data:dataValida, entrada:horaEntradaResgatarValor}
 
     localStorage.removeItem('horaEntrada');

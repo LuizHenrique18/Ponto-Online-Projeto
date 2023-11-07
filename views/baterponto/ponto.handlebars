@@ -1,6 +1,7 @@
 <div class="all-page" id="page-pontos">
 
     <div class="bater-ponto">
+
         <div class="div-user-horarios">
             <div>
                 <div id="img-user"></div>
@@ -25,22 +26,21 @@
             </div>
 
     </div>
-            <div class="confirmar-entrada">
-                <div class="confirmar-entrada1">
-                    <div type="submit" value="Voltar" class="button-voltar"></div>
-                </div>
-                <div class="confirmar-entrada2">
-                    <form action="/pontoEntrada" method="post" id="form-ponto">
-
-                        <div class="item-confirmar-entrada">
-                                <h3>Confirme para bater o ponto</h3>
-                                <textarea name="descricao" id="descricao" placeholder="Descreva como foi seu dia e se aconteceu algo de diferente" required></textarea>
-                                <label></label><input type="checkbox">
-                                <input type="submit" name="ConfirmarEntrada" class="button-ent" id="button-entrada" value="Confirmar">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <div class="div-video">
+            <div class="div-retrato-video">
+                <div class="titulo-retrato-video"><p>TIRAR FOTO PARA REGISTRO DE PONTO</p></div>
+                <video id="tirar-foto" autoplay></video>
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="but-fotos">
+                <button id="pararCamera" value="Enviar" class="butfotosenviar">Parar</button>
+                <button id="cliqueaqui" value="clique aqui" class="butfotosenviar">Tirar Foto</button>
+                <button id="novafoto" value="clique aqui" class="butfotosenviar">Nova foto</button>
+                <button id="enviar" value="clique aqui" class="butfotosenviar">Enviar</button>
+            </div>
+            
+        </div>
+        
                 
                 
 </div>
